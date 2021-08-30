@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>hololive非公式メンバーまとめ</title>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="main.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap">
+</head>
+<body>
+    <div id="app">
+        <h1>ホロライブメンバー非公式まとめ</h1>
+        <h2>Links</h2>
+        <p>
+            ホロライブ公式
+            <a href="https://twitter.com/hololivetv" :target="open_link_mode" rel="noopener noreferrer">
+                <img src="./twitter1.webp" width="20px">
+            </a>
+            <a href="https://www.youtube.com/channel/UCJFZiqLMntJufDCHc6bQixg" :target="open_link_mode" rel="noopener noreferrer">
+                <img src="./youtube.png" width="20px">
+            </a>
+            ：
+            <a href="https://www.hololive.tv/" :target="open_link_mode" rel="noopener noreferrer">Offical HP</a>
+            ／
+            <a href="https://schedule.hololive.tv/lives/hololive" :target="open_link_mode" rel="noopener noreferrer">配信予定スケジュール</a>
+            ／
+            <a href="https://ch.nicovideo.jp/hololive" :target="open_link_mode" rel="noopener noreferrer">ホロライブ公式ファンクラブ</a>
+            ／
+            友人A(えーちゃん)
+            <a href="https://twitter.com/achan_UGA" :target="open_link_mode" rel="noopener noreferrer">
+                <img src="./twitter1.webp" width="20px">
+            </a>
+        </p>
+        <p>
+            Goods:
+            <a href="https://hololive.booth.pm/" :target="open_link_mode" rel="noopener noreferrer">BOOTH</a>
+        </p>
+        <p>
+            ラジオ:
+            <a href="https://www.joqr.co.jp/qr/program/hip/" :target="open_link_mode" rel="noopener noreferrer">
+                hololive IDOL PROJECT presents ホロライブアイドル道ラジオ～私たちの歌をきけッ！
+            </a>
+            ／
+            <a href="https://www.youtube.com/channel/UCM9B5B7NjnO7z6uPXixMa7w">文化放送V&R</a>
+        </p>
+        <p>
+            LIVE:
+            <a href="https://lp.vark.co.jp/futaride_miru_hololive/" :target="open_link_mode" rel="noopener noreferrer">ふたりでみるホロライブ(6/26)</a>
+            ／
+            <a href="https://virtual.spwn.jp/events/21062719-kuroobi" :target="open_link_mode" rel="noopener noreferrer">KURO×OBI(6/27)</a>
+        </p>
+        <h2>メンバー一覧</h2>
+        <p>
+            <label><input type="radio" v-model="sort_type" value="group">グループ</label>
+            <label><input type="radio" v-model="sort_type" value="debut">デビュー順</label>
+            <label><input type="radio" v-model="sort_type" value="debut_date">デビュー日順</label>
+            <label><input type="radio" v-model="sort_type" value="birthday">誕生日順</label>
+            <label><input type="radio" v-model="sort_type" value="height">身長順</label>
+        </p>
+        <p>
+            <label><input type="checkbox" v-model="is_open_link_new_tab" value="_blank">リンクを新しいタブで開く</label>
+        </p>
+        <br>
+        <div class="members">
+            <div v-for="m in members" class="character-item" :class="[m.class]">
+                <div class="character-circle">
+                    <span class="holomem-name">{{ m.name }}</span>
+                    <span class="holomem-msg">{{ m.msg }}</span>
+                    <span class="holomem-msg2">{{ m.msg2 }}</span>
+                    <span class="holomem-msg0">{{ m.msg0 }}</span>
+                    <span class="holomem-twitter">
+                        <a :href="m.twitter" :target="open_link_mode" rel="noopener noreferrer"><img src="./twitter1.webp" width="30px"></a>
+                    </span>
+                    <span class="holomem-youtube">
+                        <a :href="m.youtube" :target="open_link_mode" rel="noopener noreferrer"><img src="./youtube.png" width="30px"></a>
+                    </span>
+                </div>
+                <div class="character-circle-white"></div>
+                <div class="character-out"></div>
+                <div class="character-bg" :style="character_bg_img(m.key)"></div>
+            </div>
+        </div>
+        <br class="cb">
+        <h2 style="margin-top: 50px;">他箱・個人勢</h2>
+        <p style="margin-bottom: 1000px; margin-left: 50px;">
+            <a href="https://www.youtube.com/channel/UC8NZiqKx6fsDT3AVcMiVFyA" :target="open_link_mode" rel="noopener noreferrer">犬山たまき</a>
+            ／
+            <a href="https://www.youtube.com/channel/UCt30jJgChL8qeT9VPadidSw" :target="open_link_mode" rel="noopener noreferrer">しぐれうい</a>
+            ／
+            <a href="https://www.youtube.com/channel/UC_4tXjqecqox5Uc05ncxpxg" :target="open_link_mode" rel="noopener noreferrer">椎名唯華</a>
+            ／
+            <a href="https://www.youtube.com/channel/UCIdEIHpS0TdkqRkHL5OkLtA" :target="open_link_mode" rel="noopener noreferrer">名取さな</a>
+        </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

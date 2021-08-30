@@ -1,0 +1,165 @@
+@charset "UTF-8";
+html, body {
+  background-color: #c2eeff;
+  font-family: 'Kosugi Maru', sans-serif;
+}
+
+#app {
+  margin-left: 50px;
+}
+
+.members {
+  width: 1200px;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+}
+
+.holomem-name,
+.holomem-msg,
+.holomem-msg2,
+.holomem-msg0 {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  color: #000;
+  text-shadow: 2px  2px 1px #fff, -2px  2px 1px #fff, 2px -2px 1px #fff, -2px -2px 1px #fff, 2px  0px 1px #fff, 0px  2px 1px #fff, -2px  0px 1px #fff, 0px -2px 1px #fff;
+}
+
+.holomem-name {
+  bottom: 0;
+  font-size: 30px;
+}
+
+.holomem-msg {
+  bottom: -20px;
+  font-size: 15px;
+}
+
+.holomem-msg2 {
+  /* bottom: -40px; */
+  top: 0;
+  right: -10px;
+  font-size: 15px;
+  transform: rotateZ(45deg);
+}
+
+.holomem-msg0 {
+  top: -20px;
+  font-size: 18px;
+}
+
+.holomem-twitter,
+.holomem-youtube {
+  position: absolute;
+  left: -18px;
+}
+
+.holomem-twitter {
+  top: 50px;
+}
+
+.holomem-youtube {
+  top: 90px;
+}
+
+.cb {
+  clear: both;
+}
+
+/*
+.character-item:hover {
+    transform:scale(1.5, 1.5);
+    z-index: 1000;
+}
+ */
+.character-item {
+  margin: 10px 10px 30px 10px;
+  position: relative;
+  float: left;
+}
+
+/*
+z-index: 青枠＞白枠＞枠外＞キャラ画像
+*/
+/* 丸枠(青)+キャラ説明(名前・何期生・デビュー日・リンクアイコン等) */
+.character-circle {
+  position: relative;
+  /* background-size: 180px 180px;
+    background-color: #fff;
+    background-position: center center; */
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 9px solid #0189b3;
+  z-index: 30;
+}
+
+/*　丸枠(青)の外側の白枠 */
+.character-circle-white {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 0;
+  margin-top: -5px;
+  margin-left: -5px;
+  border-radius: 50%;
+  border: 14px solid white;
+  z-index: 20;
+}
+
+/* 枠外 ホロメン画像が枠の外にはみ出てる分を隠す */
+.character-out {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: 0;
+  margin-top: -30px;
+  margin-left: -30px;
+  border-radius: 50%;
+  border: 39px solid #c2eeff;
+  z-index: 10;
+}
+
+/* ホロメン画像 */
+.character-bg {
+  margin: 10px 10px 30px 10px;
+  position: absolute;
+  top: 0;
+  width: 180px;
+  height: 180px;
+  background-size: 180px 180px;
+  background-color: #fff;
+  background-position: center center;
+  animation: myrotate 0.8s;
+  animation-iteration-count: infinite;
+  z-index: 1;
+}
+
+@keyframes myrotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  12.5% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(20deg);
+  }
+  37.5% {
+    transform: rotateZ(10deg);
+  }
+  50% {
+    transform: rotateZ(0deg);
+  }
+  62.5% {
+    transform: rotateZ(-10deg);
+  }
+  75% {
+    transform: rotateZ(-20deg);
+  }
+  87.5% {
+    transform: rotateZ(-10deg);
+  }
+}
