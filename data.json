@@ -15,11 +15,12 @@
         {
             "key": "azki",
             "name": "Azki",
-            "debut": "2019-05-19",
+            "debut0": "2019-05-19", "//debut0": "イノナカとしてのデビュー日",
+            "debut": "2022-04-01", "//debut": "ホロライブ加入日",
             "birthday": "7/1",
             "height": 168,
             "other": "",
-            "group": "イノナカミュージック",
+            "group": "0期生",
             "sort": 0.03,
             "twitter": "https://twitter.com/AZKi_VDiVA",
             "youtube": "https://www.youtube.com/channel/UC0TXe_LYZ4scaW2XMyi5_kw"
@@ -39,7 +40,7 @@
         {
             "key": "miko",
             "name": "さくらみこ",
-            "debut0" : "2018-08-01", "//debut0": "個人としてのデビュー日",
+            "debut0" : "2018-08-01", "//debut0": "｢さくらみこProject」として活動開始",
             "debut": "2018-12-25", "//debut": "ホロライブ加入日",
             "birthday": "3/5",
             "height": 152,
@@ -201,7 +202,7 @@
             "height": 156,
             "other": "",
             "group": "ゲーマーズ",
-            "sort": 2.52        ,
+            "sort": 2.52,
             "twitter": "https://twitter.com/inugamikorone",
             "youtube": "https://www.youtube.com/channel/UChAnqc_AY5_I3Px5dig3X1Q"
         },
@@ -268,8 +269,9 @@
         {
             "key": "suisei",
             "name": "星街すいせい",
-            "debut0": "2018-03-22", "//debut0": "個人としてのデビュー日",
-            "debut": "2019-05-19", "//debut": "ホロライブ加入日",
+            "debut0": "2018-03-22", "//debut0": "個人としてYoutubeで活用開始(twitterでの活動開始は3/18)",
+            "debut1": "2019-05-19", "//debut1": "イノナカ加入日",
+            "debut": "2019-12-01", "//debut": "ホロライブ加入日",
             "birthday": "3/22",
             "height": 160,
             "other": "",
@@ -385,6 +387,66 @@
             "sort": 5.03,
             "twitter": "https://twitter.com/omarupolka",
             "youtube": "https://www.youtube.com/channel/UCK9V2B22uJYu3N7eR_BT9QA"
+        },
+        {
+            "key": "la-darknesss",
+            "name": "ラプラス・ダークネス",
+            "debut": "2021-11-26",
+            "birthday": "5/25",
+            "height": 139,
+            "other": "秘密結社holoXの総帥",
+            "group": "6期生",
+            "sort": 6.00,
+            "twitter": "https://twitter.com/LaplusDarknesss",
+            "youtube": "https://www.youtube.com/channel/UCENwRMx5Yh42zWpzURebzTw"
+        },
+        {
+            "key": "takane-lui",
+            "name": "鷹嶺ルイ",
+            "debut": "2021-11-27",
+            "birthday": "6/11",
+            "height": 161,
+            "other": "秘密結社holoXの女幹部",
+            "group": "6期生",
+            "sort": 6.01,
+            "twitter": "https://twitter.com/takanelui",
+            "youtube": "https://www.youtube.com/channel/UCs9_O1tRPMQTHQ-N_L6FU2g"
+        },
+        {
+            "key": "hakui-koyori",
+            "name": "博衣こより",
+            "debut": "2021-11-28",
+            "birthday": "3/15",
+            "height": 153,
+            "other": "秘密結社holoXの研究者",
+            "group": "6期生",
+            "sort": 6.02,
+            "twitter": "https://twitter.com/hakuikoyori",
+            "youtube": "https://www.youtube.com/channel/UC6eWCld0KwmyHFbAqK3V-Rw"
+        },
+        {
+            "key": "sakamata-chloe",
+            "name": "沙花叉クロヱ",
+            "debut": "2021-11-29",
+            "birthday": "5/18",
+            "height": 148,
+            "other": "秘密結社holoXの掃除屋・インターン生",
+            "group": "6期生",
+            "sort": 6.03,
+            "twitter": "https://twitter.com/sakamatachloe",
+            "youtube": "https://www.youtube.com/channel/UCIBY1ollUsauvVi4hW4cumw"
+        },
+        {
+            "key": "kazama-iroha",
+            "name": "風真いろは",
+            "debut": "2021-11-30",
+            "birthday": "6/18",
+            "height": 156,
+            "other": "秘密結社holoXの用心棒",
+            "group": "6期生",
+            "sort": 6.04,
+            "twitter": "https://twitter.com/kazamairohach",
+            "youtube": "https://www.youtube.com/channel/UC_vMYWcDjmfdpH6r4TTn1MQ"
         }
     ]
 }
