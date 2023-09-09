@@ -1,7 +1,7 @@
 @charset "UTF-8";
 html, body {
-  background-color: #c2eeff;
-  font-family: 'Kosugi Maru', sans-serif;
+  background-color: rgb(194, 238, 255);
+  font-family: "Kosugi Maru", sans-serif;
 }
 
 #app {
@@ -24,12 +24,12 @@ html, body {
   text-align: center;
   font-size: 30px;
   color: #000;
-  text-shadow: 2px  2px 1px #fff, -2px  2px 1px #fff, 2px -2px 1px #fff, -2px -2px 1px #fff, 2px  0px 1px #fff, 0px  2px 1px #fff, -2px  0px 1px #fff, 0px -2px 1px #fff;
+  text-shadow: 2px 2px 1px #fff, -2px 2px 1px #fff, 2px -2px 1px #fff, -2px -2px 1px #fff, 2px 0px 1px #fff, 0px 2px 1px #fff, -2px 0px 1px #fff, 0px -2px 1px #fff;
 }
 
 .holomem-name {
   bottom: 0;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .holomem-msg {
@@ -87,12 +87,12 @@ z-index: 青枠＞白枠＞枠外＞キャラ画像
 .character-circle {
   position: relative;
   /* background-size: 180px 180px;
-    background-color: #fff;
-    background-position: center center; */
+  background-color: #fff;
+  background-position: center center; */
   width: 180px;
   height: 180px;
   border-radius: 50%;
-  border: 9px solid #0189b3;
+  border: 9px solid rgb(1, 137, 179);
   z-index: 30;
 }
 
@@ -105,7 +105,7 @@ z-index: 青枠＞白枠＞枠外＞キャラ画像
   margin-top: -5px;
   margin-left: -5px;
   border-radius: 50%;
-  border: 14px solid white;
+  border: 14px solid rgb(255, 255, 255);
   z-index: 20;
 }
 
@@ -118,7 +118,7 @@ z-index: 青枠＞白枠＞枠外＞キャラ画像
   margin-top: -30px;
   margin-left: -30px;
   border-radius: 50%;
-  border: 39px solid #c2eeff;
+  border: 39px solid rgb(194, 238, 255);
   z-index: 10;
 }
 
@@ -163,3 +163,5 @@ z-index: 青枠＞白枠＞枠外＞キャラ画像
     transform: rotateZ(-10deg);
   }
 }
+
+/*# sourceMappingURL=main.css.map */

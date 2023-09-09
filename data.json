@@ -447,6 +447,66 @@
             "sort": 6.04,
             "twitter": "https://twitter.com/kazamairohach",
             "youtube": "https://www.youtube.com/channel/UC_vMYWcDjmfdpH6r4TTn1MQ"
+        },
+        {
+            "key": "hiodoshi-ao",
+            "name": "火威青",
+            "debut": "2023-09-09 20:00",
+            "birthday": "2/27",
+            "height": 171,
+            "other": "",
+            "group": "DEV_IS ReGLOSS",
+            "sort": 7.01,
+            "twitter": "https://twitter.com/hiodoshiao",
+            "youtube": "https://www.youtube.com/@HiodoshiAo"
+        },
+        {
+            "key": "otonose-kanade",
+            "name": "音乃瀬奏",
+            "debut": "2023-09-09 20:30",
+            "birthday": "4/20",
+            "height": 153,
+            "other": "",
+            "group": "DEV_IS ReGLOSS",
+            "sort": 7.02,
+            "twitter": "https://twitter.com/otonosekanade",
+            "youtube": "https://www.youtube.com/@OtonoseKanade"
+        },
+        {
+            "key": "ichijou-ririka",
+            "name": "一条莉々華",
+            "debut": "2023-09-09 21:00",
+            "birthday": "5/12",
+            "height": 162,
+            "other": "",
+            "group": "DEV_IS ReGLOSS",
+            "sort": 7.03,
+            "twitter": "https://twitter.com/ichijouririka",
+            "youtube": "https://www.youtube.com/@IchijouRirika"
+        },
+        {
+            "key": "juufuutei-raden",
+            "name": "儒烏風亭らでん",
+            "debut": "2023-09-10",
+            "birthday": "2/4",
+            "height": 159,
+            "other": "",
+            "group": "DEV_IS ReGLOSS",
+            "sort": 7.04,
+            "twitter": "https://twitter.com/juufuuteiraden",
+            "youtube": "https://www.youtube.com/@JuufuuteiRaden"
+        },
+        {
+            "key": "todoroki-hajime",
+            "name": "轟はじめ",
+            "debut": "2023-09-10",
+            "birthday": "6/7",
+            "height": 155,
+            "other": "",
+            "group": "DEV_IS ReGLOSS",
+            "sort": 7.05,
+            "twitter": "https://twitter.com/todoroki_hajime",
+            "youtube": "https://www.youtube.com/@TodorokiHajime"
         }
     ]
 }
