@@ -1,0 +1,17 @@
+{
+  "name": "hololive",
+  "version": "1.0.0",
+  "main": "",
+  "repository": "https://github.com/kamiya-kei/hololive-members.git",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "css:compile": "yarn css:scss && yarn css:minify",
+    "css:scss": "sass ./main.scss:main.css",
+    "css:minify": "css-minify -f main.css -o ./"
+  },
+  "devDependencies": {
+    "css-minify": "^2.0.0",
+    "sass": "^1.66.1"
+  }
+}
