@@ -9,7 +9,7 @@ html, body {
 }
 
 .members {
-  width: 1200px;
+  min-width: 1200px;
   /* display: flex; */
   /* flex-wrap: wrap; */
 }
