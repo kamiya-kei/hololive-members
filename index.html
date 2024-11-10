@@ -41,25 +41,29 @@
             <a href="https://schedule.hololive.tv/lives/hololive" :target="open_link_mode" rel="noopener noreferrer">配信予定スケジュール</a>
             ／
             <a href="https://ch.nicovideo.jp/hololive" :target="open_link_mode" rel="noopener noreferrer">ホロライブ公式ファンクラブ</a>
-            ／
-            友人A(えーちゃん)
-            <a href="https://twitter.com/achan_UGA" :target="open_link_mode" rel="noopener noreferrer">
-                <img src="./twitter1.webp" width="20px">
-            </a>
         </p>
-        <p>
-            Goods:
-            <a href="https://hololive.booth.pm/" :target="open_link_mode" rel="noopener noreferrer">BOOTH</a>
-        </p>
-        <p>
-            ラジオ:
-            <a href="https://www.joqr.co.jp/qr/program/hip/" :target="open_link_mode" rel="noopener noreferrer">
-                hololive IDOL PROJECT presents ホロライブアイドル道ラジオ～私たちの歌をきけッ！
-            </a>
-            ／
-            <a href="https://www.youtube.com/channel/UCM9B5B7NjnO7z6uPXixMa7w">文化放送V&R</a>
-        </p>
-        <h2>メンバー一覧</h2>
+        <h2>個人勢</h2>
+        <div class="members" style="background-color: red;">
+            <div v-for="m in others" class="character-item" :class="[m.class]">
+                <div class="character-circle">
+                    <span class="holomem-name">{{ m.name }}</span>
+                    <span class="holomem-msg">{{ m.msg }}</span>
+                    <span class="holomem-msg2">{{ m.msg2 }}</span>
+                    <span class="holomem-msg0">{{ m.msg0 }}</span>
+                    <span class="holomem-twitter">
+                        <a :href="m.twitter" :target="open_link_mode" rel="noopener noreferrer"><img src="./twitter1.webp" width="30px"></a>
+                    </span>
+                    <span class="holomem-youtube">
+                        <a :href="m.youtube" :target="open_link_mode" rel="noopener noreferrer"><img src="./youtube.png" width="30px"></a>
+                    </span>
+                </div>
+                <div class="character-circle-white"></div>
+                <div class="character-out"></div>
+                <div class="character-bg" :style="character_bg_img(m.key)"></div>
+            </div>
+        </div>
+        <br class="cb">
+        <h2>ホロメン一覧</h2>
         <p>
             <label><input type="radio" v-model="sort_type" value="group">グループ</label>
             <label><input type="radio" v-model="sort_type" value="debut">デビュー順</label>

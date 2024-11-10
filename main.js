@@ -9,6 +9,7 @@ const app = new Vue({
         is_open_link_new_tab: false,
         sort_type: '',
         members: [],
+        others: [],
     },
     async created() {
         this.is_open_link_new_tab = localStorage.getItem('is_open_link_new_tab') === '1';
@@ -17,6 +18,7 @@ const app = new Vue({
         const res = await fetch('./data.json');
         const data = await res.json();
         this.members = data.members;
+        this.others = data.others;
 
         this.sort_members();
     },
@@ -43,7 +45,7 @@ const app = new Vue({
         },
         sort_group: function() {
             this.members.sort((a,b) => a.sort - b.sort);
-            this.members.map(m => {
+            [...this.members, ...this.others].forEach(m => {
                 m.msg = (s => `${s[0]}年${s[1]}月${s[2]}日デビュー`)(m.debut.split(' ')[0].split('-'));
                 m.msg2 = (s => `誕生日:${s[0]}月${s[1]}日`)(m.birthday.split('/'));
                 m.msg0 = m.group;
@@ -52,7 +54,7 @@ const app = new Vue({
         },
         sort_debut: function () {
             this.members.sort((a,b) => new Date(a.debut) - new Date(b.debut));
-            this.members.map(m => {
+            [...this.members, ...this.others].forEach(m => {
                 m.msg = (s => `${s[0]}年${s[1]}月${s[2]}日デビュー`)(m.debut.split(' ')[0].split('-'));
                 m.msg2 = (s => `誕生日:${s[0]}月${s[1]}日`)(m.birthday.split('/'));
                 m.msg0 = m.group;
@@ -61,7 +63,7 @@ const app = new Vue({
         },
         sort_debut_date: function () {
             this.members.sort((a,b) => new Date(extraction_date(a.debut)) - new Date(extraction_date(b.debut)));
-            this.members.map(m => {
+            [...this.members, ...this.others].forEach(m => {
                 m.msg = (s => `${s[1]}月${s[2]}日デビュー`)(m.debut.split(' ')[0].split('-'));
                 m.msg2 = (s => `誕生日:${s[0]}月${s[1]}日`)(m.birthday.split('/'));
                 m.msg0 = m.group;
@@ -70,7 +72,7 @@ const app = new Vue({
         },
         sort_birthday: function () {
             this.members.sort((a,b) => new Date(a.birthday) - new Date(b.birthday));
-            this.members.map(m => {
+            [...this.members, ...this.others].forEach(m => {
                 m.msg = (s => `誕生日:${s[0]}月${s[1]}日`)(m.birthday.split('/'));
                 m.msg2 = '';
                 m.msg0 = m.group;
@@ -79,7 +81,7 @@ const app = new Vue({
         },
         sort_height: function () {
             this.members.sort((a,b) => a.height - b.height);
-            this.members.map(m => {
+            [...this.members, ...this.others].forEach(m => {
                 m.msg = `${m.height}cm`;
                 m.msg2 = '';
                 m.msg0 = m.group;
