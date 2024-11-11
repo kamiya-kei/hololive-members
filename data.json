@@ -574,13 +574,49 @@
             "key": "yuki_sakuna",
             "name": "結城さくな",
             "debut": "2024-10-27",
-            "birthday": "12/02",
+            "birthday": "12/2",
             "height": 148,
             "other": "10000歳",
-            "group": "",
+            "group": "個人勢",
             "sort": 0.00,
             "twitter": "https://x.com/yuki_sakuna",
             "youtube": "https://www.youtube.com/channel/UCrV1Hf5r8P148idjoSfrGEQ"
+        },
+        {
+            "key": "kagura_mea",
+            "name": "神楽めあ",
+            "debut": "2018-06-28",
+            "birthday": "8/2",
+            "height": 155,
+            "other": "",
+            "group": "個人勢",
+            "sort": 0.01,
+            "twitter": "https://x.com/KaguraMea_VoV",
+            "youtube": "https://www.youtube.com/channel/UCWCc8tO-uUl_7SJXIKJACMw"
+        },
+        {
+            "key": "inuyama_tamaki",
+            "name": "犬山たまき",
+            "debut": "2018-09-22",
+            "birthday": "6/1",
+            "height": 158,
+            "other": "",
+            "group": "のりプロ",
+            "sort": 0.02,
+            "twitter": "https://x.com/norioo_",
+            "youtube": "https://www.youtube.com/channel/UC8NZiqKx6fsDT3AVcMiVFyA"
+        },
+        {
+            "key": "ui_shig",
+            "name": "しぐれうい",
+            "debut": "2018-11-02",
+            "birthday": "5/30",
+            "height": 149,
+            "other": "",
+            "group": "個人勢",
+            "sort": 0.03,
+            "twitter": "https://x.com/ui_shig",
+            "youtube": "https://www.youtube.com/channel/UCt30jJgChL8qeT9VPadidSw"
         }
     ]
 }

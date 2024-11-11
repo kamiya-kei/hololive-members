@@ -42,7 +42,7 @@
             ／
             <a href="https://ch.nicovideo.jp/hololive" :target="open_link_mode" rel="noopener noreferrer">ホロライブ公式ファンクラブ</a>
         </p>
-        <h2>個人勢</h2>
+        <h2>個人勢・他箱VTuber</h2>
         <div class="members" style="background-color: red;">
             <div v-for="m in others" class="character-item" :class="[m.class]">
                 <div class="character-circle">
@@ -94,17 +94,8 @@
                 <div class="character-bg" :style="character_bg_img(m.key)"></div>
             </div>
         </div>
-        <br class="cb">
-        <h2 style="margin-top: 50px;">他箱・個人勢</h2>
-        <p style="margin-bottom: 1000px; margin-left: 50px;">
-            <a href="https://www.youtube.com/channel/UC8NZiqKx6fsDT3AVcMiVFyA" :target="open_link_mode" rel="noopener noreferrer">犬山たまき</a>
-            ／
-            <a href="https://www.youtube.com/channel/UCt30jJgChL8qeT9VPadidSw" :target="open_link_mode" rel="noopener noreferrer">しぐれうい</a>
-            ／
-            <a href="https://www.youtube.com/channel/UC_4tXjqecqox5Uc05ncxpxg" :target="open_link_mode" rel="noopener noreferrer">椎名唯華</a>
-            ／
-            <a href="https://www.youtube.com/channel/UCIdEIHpS0TdkqRkHL5OkLtA" :target="open_link_mode" rel="noopener noreferrer">名取さな</a>
-        </p>
+        <br class="cb" >
+        <div style="margin-top: 200px;"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main.js"></script>
