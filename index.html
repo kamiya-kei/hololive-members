@@ -1,103 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>hololive非公式メンバーまとめ</title>
-    <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="main.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YDPZRNH0D7"></script>
-    <script>
-        window.dataLayer = [{
-            user_id: 'aaa',
-            uuid: 'bbb',
-        }];
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('set', 'user_properties', {
-            user_id2: 'ccc',
-            uuid2: 'ddd',
-        });
-        gtag('js', new Date());
-
-        gtag('config', 'G-YDPZRNH0D7');
-    </script>
-</head>
-<body>
-    <div id="app">
-        <h1>ホロライブメンバー非公式まとめ</h1>
-        <h2>Links</h2>
-        <p>
-            ホロライブ公式
-            <a href="https://twitter.com/hololivetv" :target="open_link_mode" rel="noopener noreferrer">
-                <img src="./twitter1.webp" width="20px">
-            </a>
-            <a href="https://www.youtube.com/channel/UCJFZiqLMntJufDCHc6bQixg" :target="open_link_mode" rel="noopener noreferrer">
-                <img src="./youtube.png" width="20px">
-            </a>
-            ：
-            <a href="https://www.hololive.tv/" :target="open_link_mode" rel="noopener noreferrer">Offical HP</a>
-            ／
-            <a href="https://schedule.hololive.tv/lives/hololive" :target="open_link_mode" rel="noopener noreferrer">配信予定スケジュール</a>
-            ／
-            <a href="https://ch.nicovideo.jp/hololive" :target="open_link_mode" rel="noopener noreferrer">ホロライブ公式ファンクラブ</a>
-        </p>
-        <h2>個人勢・他箱VTuber</h2>
-        <div class="members" style="background-color: red;">
-            <div v-for="m in others" class="character-item" :class="[m.class]">
-                <div class="character-circle">
-                    <span class="holomem-name">{{ m.name }}</span>
-                    <span class="holomem-msg">{{ m.msg }}</span>
-                    <span class="holomem-msg2">{{ m.msg2 }}</span>
-                    <span class="holomem-msg0">{{ m.msg0 }}</span>
-                    <span class="holomem-twitter">
-                        <a :href="m.twitter" :target="open_link_mode" rel="noopener noreferrer"><img src="./twitter1.webp" width="30px"></a>
-                    </span>
-                    <span class="holomem-youtube">
-                        <a :href="m.youtube" :target="open_link_mode" rel="noopener noreferrer"><img src="./youtube.png" width="30px"></a>
-                    </span>
-                </div>
-                <div class="character-circle-white"></div>
-                <div class="character-out"></div>
-                <div class="character-bg" :style="character_bg_img(m.key)"></div>
-            </div>
-        </div>
-        <br class="cb">
-        <h2>ホロメン一覧</h2>
-        <p>
-            <label><input type="radio" v-model="sort_type" value="group">グループ</label>
-            <label><input type="radio" v-model="sort_type" value="debut">デビュー順</label>
-            <label><input type="radio" v-model="sort_type" value="debut_date">デビュー日順</label>
-            <label><input type="radio" v-model="sort_type" value="birthday">誕生日順</label>
-            <label><input type="radio" v-model="sort_type" value="height">身長順</label>
-        </p>
-        <p>
-            <label><input type="checkbox" v-model="is_open_link_new_tab" value="_blank">リンクを新しいタブで開く</label>
-        </p>
-        <br>
-        <div class="members">
-            <div v-for="m in members" class="character-item" :class="[m.class]">
-                <div class="character-circle">
-                    <span class="holomem-name">{{ m.name }}</span>
-                    <span class="holomem-msg">{{ m.msg }}</span>
-                    <span class="holomem-msg2">{{ m.msg2 }}</span>
-                    <span class="holomem-msg0">{{ m.msg0 }}</span>
-                    <span class="holomem-twitter">
-                        <a :href="m.twitter" :target="open_link_mode" rel="noopener noreferrer"><img src="./twitter1.webp" width="30px"></a>
-                    </span>
-                    <span class="holomem-youtube">
-                        <a :href="m.youtube" :target="open_link_mode" rel="noopener noreferrer"><img src="./youtube.png" width="30px"></a>
-                    </span>
-                </div>
-                <div class="character-circle-white"></div>
-                <div class="character-out"></div>
-                <div class="character-bg" :style="character_bg_img(m.key)"></div>
-            </div>
-        </div>
-        <br class="cb" >
-        <div style="margin-top: 200px;"></div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="main.js"></script>
-</body>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
