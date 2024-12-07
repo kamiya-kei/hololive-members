@@ -10,19 +10,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview",
-    "css:compile": "yarn css:scss && yarn css:minify",
-    "css:scss": "sass ./src/main.scss:./src/main.css",
-    "css:minify": "css-minify -f ./src/main.css -o ./src/"
+    "preview": "vite preview"
   },
   "dependencies": {
     "vue": "^3.5.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
-    "css-minify": "^2.0.2",
     "prettier": "^3.4.2",
-    "sass": "^1.82.0",
+    "sass-embedded": "^1.82.0",
     "typescript": "~5.6.2",
     "vite": "^6.0.1",
     "vue-tsc": "^2.1.10"

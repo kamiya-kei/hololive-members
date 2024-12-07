@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
 import { VTuberData } from './functions/buildVTubers'
 import { TCompany } from './functions/storages'
-import Link from './Link.vue'
+import Link from '../Link.vue'
 
 const {
   vTuber: v,
@@ -31,12 +30,12 @@ const character_bg_img = (key: string) =>
       <span class="holomem-msg0">{{ v.msg0 }}</span>
       <span class="holomem-twitter">
         <Link :isOpenLinkNewTab="isOpenLinkNewTab" :href="v.twitter"
-          ><img src="../assets/twitter1.webp" width="30px"
+          ><img src="../../assets/twitter1.webp" width="30px"
         /></Link>
       </span>
       <span class="holomem-youtube">
         <Link :isOpenLinkNewTab="isOpenLinkNewTab" :href="v.youtube"
-          ><img src="../assets/youtube.png" width="30px"
+          ><img src="../../assets/youtube.png" width="30px"
         /></Link>
       </span>
     </div>
