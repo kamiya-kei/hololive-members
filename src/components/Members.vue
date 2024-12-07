@@ -3,14 +3,14 @@
 import { ref, defineModel, computed, onMounted, watch } from 'vue'
 import { vTubers as vTubersData } from './constants'
 
-const sort_type = defineModel('sort_type', {
-  default: localStorage.getItem('sort_type') || 'group',
+const sortType = defineModel('sortType', {
+  default: localStorage.getItem('sortType') || 'group',
 })
-const is_open_link_new_tab = defineModel('is_open_link_new_tab', {
-  default: localStorage.getItem('is_open_link_new_tab') === '1',
+const isOpenLinkNewTab = defineModel('isOpenLinkNewTab', {
+  default: localStorage.getItem('isOpenLinkNewTab') === '1',
 })
-const open_link_mode = computed(() =>
-  is_open_link_new_tab.value ? '_blank' : '_self'
+const openLinkMode = computed(() =>
+  isOpenLinkNewTab.value ? '_blank' : '_self'
 )
 
 type VTuberData = (typeof vTubersData[number]) & {
@@ -116,16 +116,16 @@ const sortVTubers = (sortType: string) => {
 }
 
 onMounted(async () => {
-  sortVTubers(sort_type.value)
+  sortVTubers(sortType.value)
 })
 
-watch(sort_type, (newSortType) => {
+watch(sortType, (newSortType) => {
   sortVTubers(newSortType)
-  localStorage.setItem('sort_type', newSortType)
+  localStorage.setItem('sortType', newSortType)
 })
 
-watch(is_open_link_new_tab, (newIsOpenLinkNewTab) => {
-  localStorage.setItem('is_open_link_new_tab', newIsOpenLinkNewTab ? '1' : '0')
+watch(isOpenLinkNewTab, (newIsOpenLinkNewTab) => {
+  localStorage.setItem('isOpenLinkNewTab', newIsOpenLinkNewTab ? '1' : '0')
 })
 
 const character_bg_img = (key: string) =>
@@ -138,14 +138,14 @@ const character_bg_img = (key: string) =>
     ホロライブ公式
     <a
       href="https://twitter.com/hololivetv"
-      :target="open_link_mode"
+      :target="openLinkMode"
       rel="noopener noreferrer"
     >
       <img src="../assets/twitter1.webp" width="20px" />
     </a>
     <a
       href="https://www.youtube.com/channel/UCJFZiqLMntJufDCHc6bQixg"
-      :target="open_link_mode"
+      :target="openLinkMode"
       rel="noopener noreferrer"
     >
       <img src="../assets/youtube.png" width="20px" />
@@ -153,21 +153,21 @@ const character_bg_img = (key: string) =>
     ：
     <a
       href="https://www.hololive.tv/"
-      :target="open_link_mode"
+      :target="openLinkMode"
       rel="noopener noreferrer"
       >Offical HP</a
     >
     ／
     <a
       href="https://schedule.hololive.tv/lives/hololive"
-      :target="open_link_mode"
+      :target="openLinkMode"
       rel="noopener noreferrer"
       >配信予定スケジュール</a
     >
     ／
     <a
       href="https://ch.nicovideo.jp/hololive"
-      :target="open_link_mode"
+      :target="openLinkMode"
       rel="noopener noreferrer"
       >ホロライブ公式ファンクラブ</a
     >
@@ -175,34 +175,34 @@ const character_bg_img = (key: string) =>
   <h2>VTuber一覧</h2>
   <p>
     <label
-      ><input type="radio" v-model="sort_type" value="group" />グループ</label
+      ><input type="radio" v-model="sortType" value="group" />グループ</label
     >
     <label
-      ><input type="radio" v-model="sort_type" value="debut" />デビュー順</label
+      ><input type="radio" v-model="sortType" value="debut" />デビュー順</label
     >
     <label
       ><input
         type="radio"
-        v-model="sort_type"
+        v-model="sortType"
         value="debut_date"
       />デビュー日順</label
     >
     <label
       ><input
         type="radio"
-        v-model="sort_type"
+        v-model="sortType"
         value="birthday"
       />誕生日順</label
     >
     <label
-      ><input type="radio" v-model="sort_type" value="height" />身長順</label
+      ><input type="radio" v-model="sortType" value="height" />身長順</label
     >
   </p>
   <p>
     <label
       ><input
         type="checkbox"
-        v-model="is_open_link_new_tab"
+        v-model="isOpenLinkNewTab"
         value="_blank"
       />リンクを新しいタブで開く</label
     >
@@ -218,7 +218,7 @@ const character_bg_img = (key: string) =>
         <span class="holomem-twitter">
           <a
             :href="m.twitter"
-            :target="open_link_mode"
+            :target="openLinkMode"
             rel="noopener noreferrer"
             ><img src="../assets/twitter1.webp" width="30px"
           /></a>
@@ -226,7 +226,7 @@ const character_bg_img = (key: string) =>
         <span class="holomem-youtube">
           <a
             :href="m.youtube"
-            :target="open_link_mode"
+            :target="openLinkMode"
             rel="noopener noreferrer"
             ><img src="../assets/youtube.png" width="30px"
           /></a>
