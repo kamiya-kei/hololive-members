@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineModel, onMounted, watch } from 'vue'
+import { ref, defineModel, onMounted, watch, defineProps } from 'vue'
 import {
   loadSortTypeConfig,
   TSortType,
@@ -13,6 +13,7 @@ import {
   companies,
 } from './functions/storages'
 import { VTuberData, buildVTubers } from './functions/buildVTubers'
+import VTuberCircle from './VTuberCircle.vue';
 
 const { openLinkMode } = defineProps<{
   openLinkMode: '_blank' | '_self'
@@ -41,8 +42,6 @@ watch(displayCompanies, (newDisplayCompanies) => {
   updateCompanyConfig(newDisplayCompanies)
 })
 
-const character_bg_img = (key: string) =>
-  `background-image: url('img/${key}.webp');`
 </script>
 
 <template>
@@ -65,38 +64,8 @@ const character_bg_img = (key: string) =>
   </p>
   <br />
   <div class="vTubers">
-    <template v-for="m in vTubers" :key="m.key">
-      <div
-        v-if="displayCompanies.includes(m.company)"
-        class="character-item"
-        :class="[m.class]"
-      >
-        <div class="character-circle">
-          <span class="holomem-name">{{ m.name }}</span>
-          <span class="holomem-msg">{{ m.msg }}</span>
-          <span class="holomem-msg2">{{ m.msg2 }}</span>
-          <span class="holomem-msg0">{{ m.msg0 }}</span>
-          <span class="holomem-twitter">
-            <a
-              :href="m.twitter"
-              :target="openLinkMode"
-              rel="noopener noreferrer"
-              ><img src="../assets/twitter1.webp" width="30px"
-            /></a>
-          </span>
-          <span class="holomem-youtube">
-            <a
-              :href="m.youtube"
-              :target="openLinkMode"
-              rel="noopener noreferrer"
-              ><img src="../assets/youtube.png" width="30px"
-            /></a>
-          </span>
-        </div>
-        <div class="character-circle-white"></div>
-        <div class="character-out"></div>
-        <div class="character-bg" :style="character_bg_img(m.key)"></div>
-      </div>
+    <template v-for="vTuber in vTubers" :key="vTuber.key">
+      <VTuberCircle :vTuber="vTuber" :openLinkMode="openLinkMode" :displayCompanies="displayCompanies" />
     </template>
   </div>
   <br class="cb" />
