@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { watch } from 'vue'
-import Members from './Members.vue'
+import VTuberList from './VTuberList.vue'
 import Link from '../Link.vue'
 import {
   loadIsOpenLinkNewTabConfig,
@@ -59,7 +59,7 @@ watch(isOpenLinkNewTab, (newIsOpenLinkNewTab) => {
       >ホロライブ公式ファンクラブ</Link
     >
   </p>
-  <Members :isOpenLinkNewTab="isOpenLinkNewTab" />
+  <VTuberList :isOpenLinkNewTab="isOpenLinkNewTab" />
   <div class="emptyBottom"></div>
 </template>
 
