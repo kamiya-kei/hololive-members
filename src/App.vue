@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import '@total-typescript/ts-reset'
 
-import { defineModel, computed, watch } from 'vue'
+import { defineModel, watch } from 'vue'
 import Members from './components/Members.vue'
+import Link from './components/Link.vue'
 import {
   loadIsOpenLinkNewTabConfig,
   updateIsOpenLinkNewTabConfig,
@@ -11,9 +12,6 @@ import {
 const isOpenLinkNewTab = defineModel<boolean>('isOpenLinkNewTab', {
   default: loadIsOpenLinkNewTabConfig(),
 })
-const openLinkMode = computed(() =>
-  isOpenLinkNewTab.value ? '_blank' : '_self'
-)
 
 watch(isOpenLinkNewTab, (newIsOpenLinkNewTab) => {
   updateIsOpenLinkNewTabConfig(newIsOpenLinkNewTab)
@@ -28,50 +26,42 @@ watch(isOpenLinkNewTab, (newIsOpenLinkNewTab) => {
       ><input
         type="checkbox"
         v-model="isOpenLinkNewTab"
-        value="_blank"
       />リンクを新しいタブで開く</label
     >
   </p>
   <h2>Links</h2>
   <p>
     ホロライブ公式
-    <a
+    <Link
+      :isOpenLinkNewTab="isOpenLinkNewTab"
       href="https://twitter.com/hololivetv"
-      :target="openLinkMode"
-      rel="noopener noreferrer"
     >
       <img src="./assets/twitter1.webp" width="20px" />
-    </a>
-    <a
+    </Link>
+    <Link
+      :isOpenLinkNewTab="isOpenLinkNewTab"
       href="https://www.youtube.com/channel/UCJFZiqLMntJufDCHc6bQixg"
-      :target="openLinkMode"
-      rel="noopener noreferrer"
     >
       <img src="./assets/youtube.png" width="20px" />
-    </a>
+    </Link>
     ：
-    <a
-      href="https://www.hololive.tv/"
-      :target="openLinkMode"
-      rel="noopener noreferrer"
-      >Offical HP</a
+    <Link :isOpenLinkNewTab="isOpenLinkNewTab" href="https://www.hololive.tv/"
+      >Offical HP</Link
     >
     ／
-    <a
+    <Link
+      :isOpenLinkNewTab="isOpenLinkNewTab"
       href="https://schedule.hololive.tv/lives/hololive"
-      :target="openLinkMode"
-      rel="noopener noreferrer"
-      >配信予定スケジュール</a
+      >配信予定スケジュール</Link
     >
     ／
-    <a
+    <Link
+      :isOpenLinkNewTab="isOpenLinkNewTab"
       href="https://ch.nicovideo.jp/hololive"
-      :target="openLinkMode"
-      rel="noopener noreferrer"
-      >ホロライブ公式ファンクラブ</a
+      >ホロライブ公式ファンクラブ</Link
     >
   </p>
-  <Members :openLinkMode="openLinkMode" />
+  <Members :isOpenLinkNewTab="isOpenLinkNewTab" />
   <div class="emptyBottom"></div>
 </template>
 

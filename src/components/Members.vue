@@ -13,10 +13,10 @@ import {
   companies,
 } from './functions/storages'
 import { VTuberData, buildVTubers } from './functions/buildVTubers'
-import VTuberCircle from './VTuberCircle.vue';
+import VTuberCircle from './VTuberCircle.vue'
 
-const { openLinkMode } = defineProps<{
-  openLinkMode: '_blank' | '_self'
+const { isOpenLinkNewTab } = defineProps<{
+  isOpenLinkNewTab: boolean
 }>()
 
 const sortType = defineModel<TSortType>('sortType', {
@@ -41,7 +41,6 @@ watch(sortType, (newSortType) => {
 watch(displayCompanies, (newDisplayCompanies) => {
   updateCompanyConfig(newDisplayCompanies)
 })
-
 </script>
 
 <template>
@@ -65,7 +64,11 @@ watch(displayCompanies, (newDisplayCompanies) => {
   <br />
   <div class="vTubers">
     <template v-for="vTuber in vTubers" :key="vTuber.key">
-      <VTuberCircle :vTuber="vTuber" :openLinkMode="openLinkMode" :displayCompanies="displayCompanies" />
+      <VTuberCircle
+        :vTuber="vTuber"
+        :isOpenLinkNewTab="isOpenLinkNewTab"
+        :displayCompanies="displayCompanies"
+      />
     </template>
   </div>
   <br class="cb" />
