@@ -114,6 +114,7 @@
             "key": "aqua",
             "name": "湊あくあ",
             "debut": "2018-08-08",
+            "graduation": "2024-08-28",
             "birthday": "12/01",
             "height": 148,
             "other": "体重：44.5kg",
@@ -296,6 +297,7 @@
             "key": "coco",
             "name": "桐生ココ",
             "debut": "2019-12-28",
+            "graduation": "2021-07-01",
             "birthday": "6/17",
             "height": 180,
             "other": "",
@@ -583,6 +585,30 @@
             "youtube": "https://www.youtube.com/channel/UCrV1Hf5r8P148idjoSfrGEQ"
         },
         {
+            "key": "kson",
+            "name": "kson",
+            "debut": "2021-10-16",
+            "birthday": "11/1",
+            "height": 189.3,
+            "other": "総長",
+            "group": "個人勢",
+            "sort": 0.01,
+            "twitter": "https://x.com/ksononair",
+            "youtube": "https://www.youtube.com/channel/UC9ruVYPv7yJmV0Rh0NKA-Lw"
+        },
+        {
+            "key": "hanamiya_rica",
+            "name": "花宮莉歌",
+            "debut": "2024-10-31",
+            "birthday": "7/28",
+            "height": 154,
+            "other": "",
+            "group": "個人勢",
+            "sort": 0.02,
+            "twitter": "https://x.com/hanamiya_rica",
+            "youtube": "https://www.youtube.com/channel/UCz4jhqrCfthF8NnldZeK_rw"
+        },
+        {
             "key": "kagura_mea",
             "name": "神楽めあ",
             "debut": "2018-06-28",
@@ -590,7 +616,7 @@
             "height": 155,
             "other": "",
             "group": "個人勢",
-            "sort": 0.01,
+            "sort": 1.00,
             "twitter": "https://x.com/KaguraMea_VoV",
             "youtube": "https://www.youtube.com/channel/UCWCc8tO-uUl_7SJXIKJACMw"
         },
@@ -602,7 +628,7 @@
             "height": 158,
             "other": "",
             "group": "のりプロ",
-            "sort": 0.02,
+            "sort": 1.01,
             "twitter": "https://x.com/norioo_",
             "youtube": "https://www.youtube.com/channel/UC8NZiqKx6fsDT3AVcMiVFyA"
         },
@@ -614,7 +640,7 @@
             "height": 149,
             "other": "",
             "group": "個人勢",
-            "sort": 0.03,
+            "sort": 1.02,
             "twitter": "https://x.com/ui_shig",
             "youtube": "https://www.youtube.com/channel/UCt30jJgChL8qeT9VPadidSw"
         }
