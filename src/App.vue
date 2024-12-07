@@ -1,18 +1,23 @@
 <script setup lang="ts">
+import '@total-typescript/ts-reset'
+
 import { defineModel, computed, watch } from 'vue'
 import Members from './components/Members.vue'
+import {
+  loadIsOpenLinkNewTabConfig,
+  updateIsOpenLinkNewTabConfig,
+} from './components/functions/storages'
 
-const isOpenLinkNewTab = defineModel('isOpenLinkNewTab', {
-  default: localStorage.getItem('isOpenLinkNewTab') === '1',
+const isOpenLinkNewTab = defineModel<boolean>('isOpenLinkNewTab', {
+  default: loadIsOpenLinkNewTabConfig(),
 })
 const openLinkMode = computed(() =>
   isOpenLinkNewTab.value ? '_blank' : '_self'
 )
 
 watch(isOpenLinkNewTab, (newIsOpenLinkNewTab) => {
-  localStorage.setItem('isOpenLinkNewTab', newIsOpenLinkNewTab ? '1' : '0')
+  updateIsOpenLinkNewTabConfig(newIsOpenLinkNewTab)
 })
-
 </script>
 
 <template>
@@ -66,8 +71,12 @@ watch(isOpenLinkNewTab, (newIsOpenLinkNewTab) => {
       >ホロライブ公式ファンクラブ</a
     >
   </p>
-  <Members :openLinkMode=openLinkMode />
-  <div style="margin-top: 200px"></div>
+  <Members :openLinkMode="openLinkMode" />
+  <div class="emptyBottom"></div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.emptyBottom {
+  margin-bottom: 200px;
+}
+</style>

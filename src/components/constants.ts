@@ -1,6 +1,4 @@
-export const companies = ['hololive', 'individual', 'noripro'] as const
-
-type TCompany = (typeof companies)[number]
+import { TCompany } from './functions/storages'
 
 type TVtuber = {
   key: string
