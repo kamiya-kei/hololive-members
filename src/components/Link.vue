@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 const { href, isOpenLinkNewTab } = defineProps<{
   isOpenLinkNewTab: boolean
   href: string

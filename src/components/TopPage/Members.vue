@@ -75,6 +75,12 @@ watch(displayCompanies, (newDisplayCompanies) => {
 </template>
 
 <style scoped>
+.vTubers {
+  min-width: 1200px;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+}
+
 .config {
   display: flex;
   gap: 12px;

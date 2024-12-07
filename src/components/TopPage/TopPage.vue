@@ -1,5 +1,4 @@
 <script setup lang="ts">
-
 import { watch } from 'vue'
 import Members from './Members.vue'
 import Link from '../Link.vue'
