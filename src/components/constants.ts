@@ -1,4 +1,4 @@
-const companies = ['hololive', 'individual', 'noripro'] as const
+export const companies = ['hololive', 'individual', 'noripro'] as const
 
 type TCompany = (typeof companies)[number]
 

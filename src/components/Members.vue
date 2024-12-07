@@ -1,17 +1,19 @@
 <script setup lang="ts">
 
-import { ref, defineModel, computed, onMounted, watch } from 'vue'
-import { vTubers as vTubersData } from './constants'
+import { ref, defineModel, onMounted, watch } from 'vue'
+import { companies, vTubers as vTubersData } from './constants'
+
+const { openLinkMode } = defineProps<{
+  openLinkMode: "_blank" | "_self"
+}>()
 
 const sortType = defineModel('sortType', {
   default: localStorage.getItem('sortType') || 'group',
 })
-const isOpenLinkNewTab = defineModel('isOpenLinkNewTab', {
-  default: localStorage.getItem('isOpenLinkNewTab') === '1',
-})
-const openLinkMode = computed(() =>
-  isOpenLinkNewTab.value ? '_blank' : '_self'
-)
+
+const displayCompanies = defineModel('displayCompanies', {
+  default: localStorage.getItem('displayCompanies')?.split(',') || companies,
+});
 
 type VTuberData = (typeof vTubersData[number]) & {
   msg: string
@@ -124,8 +126,8 @@ watch(sortType, (newSortType) => {
   localStorage.setItem('sortType', newSortType)
 })
 
-watch(isOpenLinkNewTab, (newIsOpenLinkNewTab) => {
-  localStorage.setItem('isOpenLinkNewTab', newIsOpenLinkNewTab ? '1' : '0')
+watch(displayCompanies, (newdisplayCompanies) => {
+  localStorage.setItem('displayCompanies', newdisplayCompanies.join(','))
 })
 
 const character_bg_img = (key: string) =>
@@ -133,45 +135,7 @@ const character_bg_img = (key: string) =>
 </script>
 
 <template>
-  <h2>Links</h2>
-  <p>
-    ホロライブ公式
-    <a
-      href="https://twitter.com/hololivetv"
-      :target="openLinkMode"
-      rel="noopener noreferrer"
-    >
-      <img src="../assets/twitter1.webp" width="20px" />
-    </a>
-    <a
-      href="https://www.youtube.com/channel/UCJFZiqLMntJufDCHc6bQixg"
-      :target="openLinkMode"
-      rel="noopener noreferrer"
-    >
-      <img src="../assets/youtube.png" width="20px" />
-    </a>
-    ：
-    <a
-      href="https://www.hololive.tv/"
-      :target="openLinkMode"
-      rel="noopener noreferrer"
-      >Offical HP</a
-    >
-    ／
-    <a
-      href="https://schedule.hololive.tv/lives/hololive"
-      :target="openLinkMode"
-      rel="noopener noreferrer"
-      >配信予定スケジュール</a
-    >
-    ／
-    <a
-      href="https://ch.nicovideo.jp/hololive"
-      :target="openLinkMode"
-      rel="noopener noreferrer"
-      >ホロライブ公式ファンクラブ</a
-    >
-  </p>
+
   <h2>VTuber一覧</h2>
   <p>
     <label
@@ -199,43 +163,47 @@ const character_bg_img = (key: string) =>
     >
   </p>
   <p>
-    <label
-      ><input
-        type="checkbox"
-        v-model="isOpenLinkNewTab"
-        value="_blank"
-      />リンクを新しいタブで開く</label
-    >
+    <label>
+      <input type="checkbox" value="hololive" v-model="displayCompanies" />ホロメン
+    </label>
+    <label>
+      <input type="checkbox" value="individual" v-model="displayCompanies" />個人勢
+    </label>
+    <label>
+      <input type="checkbox" value="noripro" v-model="displayCompanies" />のりプロ
+    </label>
   </p>
   <br />
   <div class="vTubers">
-    <div v-for="m in vTubers" class="character-item" :class="[m.class]">
-      <div class="character-circle">
-        <span class="holomem-name">{{ m.name }}</span>
-        <span class="holomem-msg">{{ m.msg }}</span>
-        <span class="holomem-msg2">{{ m.msg2 }}</span>
-        <span class="holomem-msg0">{{ m.msg0 }}</span>
-        <span class="holomem-twitter">
-          <a
-            :href="m.twitter"
-            :target="openLinkMode"
-            rel="noopener noreferrer"
-            ><img src="../assets/twitter1.webp" width="30px"
-          /></a>
-        </span>
-        <span class="holomem-youtube">
-          <a
-            :href="m.youtube"
-            :target="openLinkMode"
-            rel="noopener noreferrer"
-            ><img src="../assets/youtube.png" width="30px"
-          /></a>
-        </span>
+    <template v-for="m in vTubers">
+      <div v-if="displayCompanies.includes(m.company)" class="character-item" :class="[m.class]">
+        <div class="character-circle">
+          <span class="holomem-name">{{ m.name }}</span>
+          <span class="holomem-msg">{{ m.msg }}</span>
+          <span class="holomem-msg2">{{ m.msg2 }}</span>
+          <span class="holomem-msg0">{{ m.msg0 }}</span>
+          <span class="holomem-twitter">
+            <a
+              :href="m.twitter"
+              :target="openLinkMode"
+              rel="noopener noreferrer"
+              ><img src="../assets/twitter1.webp" width="30px"
+            /></a>
+          </span>
+          <span class="holomem-youtube">
+            <a
+              :href="m.youtube"
+              :target="openLinkMode"
+              rel="noopener noreferrer"
+              ><img src="../assets/youtube.png" width="30px"
+            /></a>
+          </span>
+        </div>
+        <div class="character-circle-white"></div>
+        <div class="character-out"></div>
+        <div class="character-bg" :style="character_bg_img(m.key)"></div>
       </div>
-      <div class="character-circle-white"></div>
-      <div class="character-out"></div>
-      <div class="character-bg" :style="character_bg_img(m.key)"></div>
-    </div>
+    </template>
   </div>
   <br class="cb" />
 </template>
