@@ -1,127 +1,135 @@
 <script setup lang="ts">
-// @ts-nocheck
 
-import { ref, defineModel, computed, onMounted, watch } from "vue";
-import { members as membersData, others as othersData} from './constants'
+import { ref, defineModel, computed, onMounted, watch } from 'vue'
+import { vTubers as vTubersData } from './constants'
 
 const sort_type = defineModel('sort_type', {
-  default: localStorage.getItem("sort_type") || "group",
-});
+  default: localStorage.getItem('sort_type') || 'group',
+})
 const is_open_link_new_tab = defineModel('is_open_link_new_tab', {
-  default: localStorage.getItem("is_open_link_new_tab") === "1",
-});
+  default: localStorage.getItem('is_open_link_new_tab') === '1',
+})
 const open_link_mode = computed(() =>
-  is_open_link_new_tab.value ? "_blank" : "_self"
-);
+  is_open_link_new_tab.value ? '_blank' : '_self'
+)
 
-type VTuberData = typeof membersData[0] & {
-    msg: string;
-    msg2: string;
-    msg0: string;
-    class: string;
+type VTuberData = (typeof vTubersData[number]) & {
+  msg: string
+  msg2: string
+  msg0: string
+  class: string
 }
 
-const members = ref<VTuberData[]>([]);
-const others = ref<VTuberData[]>([]);
+const vTubers = ref<VTuberData[]>([])
 
-const extraction_date = (s: string) => s.split('-').slice(1).join('/');
+const extraction_date = (s: string) => s.split('-').slice(1).join('/')
 
 const sortGroup = () => {
-    const newMembersData = [...membersData];
-    const newOthersData = [...othersData];
-    newMembersData.sort((a,b) => a.sort - b.sort);
-    [...newOthersData, ...newOthersData].forEach(m => {
-        m.msg = (s => `${s[0]}年${s[1]}月${s[2]}日デビュー`)(m.debut.split(' ')[0].split('-'));
-        m.msg2 = (s => `誕生日:${s[0]}月${s[1]}日`)(m.birthday.split('/'));
-        m.msg0 = m.group;
-        m.class = (m.sort/0.1) % 1 == 0 ? 'cb' : '';
-    });
-    members.value = newMembersData;
-    others.value = newOthersData;
+  const newVTubers: VTuberData[] = vTubersData.map((v) =>({
+    ...v,
+    msg: ((s) => `${s[0]}年${s[1]}月${s[2]}日デビュー`)(
+      v.debut.split(' ')[0].split('-')
+    ),
+    msg2: ((s) => `誕生日:${s[0]}月${s[1]}日`)(v.birthday.split('/')),
+    msg0: v.group,
+    class: (v.sort / 0.1) % 1 == 0 ? 'cb' : ''
+  }));
+  newVTubers.sort((a, b) => a.sort - b.sort);
+  vTubers.value = newVTubers;
 }
 const sortDebut = () => {
-    const newMembersData = [...membersData];
-    const newOthersData = [...othersData];
-    newMembersData.sort((a,b) => new Date(a.debut) - new Date(b.debut));
-    [...newMembersData, ...newOthersData].forEach(m => {
-        m.msg = (s => `${s[0]}年${s[1]}月${s[2]}日デビュー`)(m.debut.split(' ')[0].split('-'));
-        m.msg2 = (s => `誕生日:${s[0]}月${s[1]}日`)(m.birthday.split('/'));
-        m.msg0 = m.group;
-        m.class = '';
-    });
+  const newVTubers: VTuberData[] = vTubersData.map((v) =>({
+    ...v,
+    msg: ((s) => `${s[0]}年${s[1]}月${s[2]}日デビュー`)(
+      v.debut.split(' ')[0].split('-')
+    ),
+    msg2: ((s) => `誕生日:${s[0]}月${s[1]}日`)(v.birthday.split('/')),
+    msg0: v.group,
+    class: ''
+  }));
+  newVTubers.sort((a, b) => new Date(a.debut).getTime() - new Date(b.debut).getTime())
+  vTubers.value = newVTubers;
+
 }
 const sortDebutDate = () => {
-    const newMembersData = [...membersData];
-    const newOthersData = [...othersData];
-    newMembersData.sort((a,b) => new Date(extraction_date(a.debut)) - new Date(extraction_date(b.debut)));
-    [...newMembersData, ...newOthersData].forEach(m => {
-        m.msg = (s => `${s[1]}月${s[2]}日デビュー`)(m.debut.split(' ')[0].split('-'));
-        m.msg2 = (s => `誕生日:${s[0]}月${s[1]}日`)(m.birthday.split('/'));
-        m.msg0 = m.group;
-        m.class = '';
-    });
+  const newVTubers: VTuberData[] = vTubersData.map((v) =>({
+    ...v,
+    msg: ((s) => `${s[1]}月${s[2]}日デビュー`)(
+      v.debut.split(' ')[0].split('-')
+    ),
+    msg2: ((s) => `誕生日:${s[0]}月${s[1]}日`)(v.birthday.split('/')),
+    msg0: v.group,
+    class: ''
+  }));
+  newVTubers.sort(
+    (a, b) =>
+      new Date(extraction_date(a.debut)).getTime() - new Date(extraction_date(b.debut)).getTime()
+  )
+  vTubers.value = newVTubers;
+
 }
 const sortBirthday = () => {
-    const newMembersData = [...membersData];
-    const newOthersData = [...othersData];
-    newMembersData.sort((a,b) => new Date(a.birthday) - new Date(b.birthday));
-    [...newMembersData, ...newOthersData].forEach(m => {
-        m.msg = (s => `誕生日:${s[0]}月${s[1]}日`)(m.birthday.split('/'));
-        m.msg2 = '';
-        m.msg0 = m.group;
-        m.class = '';
-    });
+  const newVTubers: VTuberData[] = vTubersData.map((v) =>({
+    ...v,
+    msg: ((s) => `誕生日:${s[0]}月${s[1]}日`)(v.birthday.split('/')),
+    msg2: '',
+    msg0: v.group,
+    class: '',
+  }));
+  newVTubers.sort((a, b) => new Date(a.birthday).getTime() - new Date(b.birthday).getTime())
+  vTubers.value = newVTubers;
+
 }
 const sortHeight = () => {
-    const newMembersData = [...membersData];
-    const newOthersData = [...othersData];
-    newMembersData.sort((a,b) => a.height - b.height);
-    [...newMembersData, ...newOthersData].forEach(m => {
-        m.msg = `${m.height}cm`;
-        m.msg2 = '';
-        m.msg0 = m.group;
-        m.class = '';
-    });
+  const newVTubers: VTuberData[] = vTubersData.map((v) =>({
+    ...v,
+    msg: `${v.height}cm`,
+    msg2: '',
+    msg0: v.group,
+    class: '',
+  }));
+  newVTubers.sort((a, b) => a.height - b.height)
+  vTubers.value = newVTubers;
+
 }
 
-const sortMembers = (sortType: string) => {
-    switch(sortType) {
-        case 'group':
-            sortGroup();
-            break;
-        case 'debut':
-            sortDebut();
-            break;
-        case 'debut_date':
-            sortDebutDate();
-            break;
-        case 'birthday':
-            sortBirthday();
-            break;
-        case 'height':
-            sortHeight();
-            break;
-        default:
-            throw new Error('invalid sortType');
-    }
-};
+const sortVTubers = (sortType: string) => {
+  switch (sortType) {
+    case 'group':
+      sortGroup()
+      break
+    case 'debut':
+      sortDebut()
+      break
+    case 'debut_date':
+      sortDebutDate()
+      break
+    case 'birthday':
+      sortBirthday()
+      break
+    case 'height':
+      sortHeight()
+      break
+    default:
+      throw new Error('invalid sortType')
+  }
+}
 
 onMounted(async () => {
-    sortMembers(sort_type.value);
-});
+  sortVTubers(sort_type.value)
+})
 
 watch(sort_type, (newSortType) => {
-    sortMembers(newSortType);
-    localStorage.setItem('sort_type', newSortType);
-});
+  sortVTubers(newSortType)
+  localStorage.setItem('sort_type', newSortType)
+})
 
 watch(is_open_link_new_tab, (newIsOpenLinkNewTab) => {
-    localStorage.setItem('is_open_link_new_tab', newIsOpenLinkNewTab ? '1' : '0');
-});
+  localStorage.setItem('is_open_link_new_tab', newIsOpenLinkNewTab ? '1' : '0')
+})
 
-
-const character_bg_img= (key: string) =>  `background-image: url('img/${key}.webp');`;
-
+const character_bg_img = (key: string) =>
+  `background-image: url('img/${key}.webp');`
 </script>
 
 <template>
@@ -164,38 +172,7 @@ const character_bg_img= (key: string) =>  `background-image: url('img/${key}.web
       >ホロライブ公式ファンクラブ</a
     >
   </p>
-  <h2>個人勢・他箱VTuber</h2>
-  <div class="members" style="background-color: red">
-    <div v-for="m in others" class="character-item" :class="[m.class]">
-      <div class="character-circle">
-        <span class="holomem-name">{{ m.name }}</span>
-        <span class="holomem-msg">{{ m.msg }}</span>
-        <span class="holomem-msg2">{{ m.msg2 }}</span>
-        <span class="holomem-msg0">{{ m.msg0 }}</span>
-        <span class="holomem-twitter">
-          <a
-            :href="m.twitter"
-            :target="open_link_mode"
-            rel="noopener noreferrer"
-            ><img src="../assets/twitter1.webp" width="30px"
-          /></a>
-        </span>
-        <span class="holomem-youtube">
-          <a
-            :href="m.youtube"
-            :target="open_link_mode"
-            rel="noopener noreferrer"
-            ><img src="../assets/youtube.png" width="30px"
-          /></a>
-        </span>
-      </div>
-      <div class="character-circle-white"></div>
-      <div class="character-out"></div>
-      <div class="character-bg" :style="character_bg_img(m.key)"></div>
-    </div>
-  </div>
-  <br class="cb" />
-  <h2>ホロメン一覧</h2>
+  <h2>VTuber一覧</h2>
   <p>
     <label
       ><input type="radio" v-model="sort_type" value="group" />グループ</label
@@ -231,8 +208,8 @@ const character_bg_img= (key: string) =>  `background-image: url('img/${key}.web
     >
   </p>
   <br />
-  <div class="members">
-    <div v-for="m in members" class="character-item" :class="[m.class]">
+  <div class="vTubers">
+    <div v-for="m in vTubers" class="character-item" :class="[m.class]">
       <div class="character-circle">
         <span class="holomem-name">{{ m.name }}</span>
         <span class="holomem-msg">{{ m.msg }}</span>
