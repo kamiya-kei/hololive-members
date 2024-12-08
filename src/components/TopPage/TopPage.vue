@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { watch } from 'vue';
 import VTuberList from './VTuberList.vue';
-import ExternalLink from '../ExternalLink.vue';
+import ExternalLink from '@/components/ExternalLink.vue';
 import { loadIsOpenLinkNewTabConfig, updateIsOpenLinkNewTabConfig } from './functions/storages';
 
 const isOpenLinkNewTab = defineModel<boolean>('isOpenLinkNewTab', {

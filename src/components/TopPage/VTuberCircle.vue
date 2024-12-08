@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { VTuberData } from './functions/buildVTubers';
 import { TCompany } from './functions/storages';
-import ExternalLink from '../ExternalLink.vue';
+import ExternalLink from '@/components/ExternalLink.vue';
 
 const {
   vTuber: v,
