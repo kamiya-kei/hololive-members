@@ -1,14 +1,12 @@
 <script setup lang="ts">
 import { VTuberData } from './functions/buildVTubers';
-import ExternalLink from '@/components/ExternalLink.vue';
+import ExternalLink from '@/components/TopPage/ExternalLink.vue';
 
 const {
   vTuber: v,
-  isOpenLinkNewTab,
   isFavoriteVTuberEditMode,
   isFavorite,
 } = defineProps<{
-  isOpenLinkNewTab: boolean;
   vTuber: VTuberData;
   isFavoriteVTuberEditMode: boolean;
   isFavorite: boolean;
@@ -33,14 +31,10 @@ const character_bg_img = (key: string) => `background-image: url('img/${key}.web
       <span class="holomem-msg2">{{ v.msg2 }}</span>
       <span class="holomem-msg0">{{ v.msg0 }}</span>
       <span class="holomem-twitter" @click="(e) => e.stopPropagation()">
-        <ExternalLink :is-open-link-new-tab="isOpenLinkNewTab" :href="v.twitter"
-          ><img src="../../assets/twitter1.webp" width="30px"
-        /></ExternalLink>
+        <ExternalLink :href="v.twitter"><img src="../../assets/twitter1.webp" width="30px" /></ExternalLink>
       </span>
       <span class="holomem-youtube" @click="(e) => e.stopPropagation()">
-        <ExternalLink :is-open-link-new-tab="isOpenLinkNewTab" :href="v.youtube"
-          ><img src="../../assets/youtube.png" width="30px"
-        /></ExternalLink>
+        <ExternalLink :href="v.youtube"><img src="../../assets/youtube.png" width="30px" /></ExternalLink>
       </span>
     </div>
     <div class="character-circle-white"></div>

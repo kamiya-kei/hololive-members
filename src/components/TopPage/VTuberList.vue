@@ -21,10 +21,6 @@ import {
 import { VTuberData, buildVTubers } from './functions/buildVTubers';
 import VTuberCircle from './VTuberCircle.vue';
 
-const { isOpenLinkNewTab } = defineProps<{
-  isOpenLinkNewTab: boolean;
-}>();
-
 const sortType = defineModel<TSortType>('sortType', {
   default: loadSortTypeConfig(),
 });
@@ -122,7 +118,6 @@ const handleClickVTuber = (vTuber: VTuberData, newIsFavorite: boolean) => {
     <template v-for="vTuber in filteredVTubers" :key="vTuber.key">
       <VTuberCircle
         :v-tuber="vTuber"
-        :is-open-link-new-tab="isOpenLinkNewTab"
         :display-companies="displayCompanies"
         :is-favorite="favoriteVTuberKeys.includes(vTuber.key)"
         :is-favorite-v-tuber-edit-mode="isFavoriteVTuberEditMode"
