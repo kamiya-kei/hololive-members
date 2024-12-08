@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue';
 import {
   loadSortTypeConfig,
   TSortType,
@@ -11,36 +11,36 @@ import {
   updateCompanyConfig,
   companyTexts,
   companies,
-} from './functions/storages'
-import { VTuberData, buildVTubers } from './functions/buildVTubers'
-import VTuberCircle from './VTuberCircle.vue'
+} from './functions/storages';
+import { VTuberData, buildVTubers } from './functions/buildVTubers';
+import VTuberCircle from './VTuberCircle.vue';
 
 const { isOpenLinkNewTab } = defineProps<{
-  isOpenLinkNewTab: boolean
-}>()
+  isOpenLinkNewTab: boolean;
+}>();
 
 const sortType = defineModel<TSortType>('sortType', {
   default: loadSortTypeConfig(),
-})
+});
 
 const displayCompanies = defineModel<TCompany[]>('displayCompanies', {
   default: loadCompanyConfig(),
-})
+});
 
-const vTubers = ref<VTuberData[]>([])
+const vTubers = ref<VTuberData[]>([]);
 
 onMounted(async () => {
-  vTubers.value = buildVTubers(sortType.value)
-})
+  vTubers.value = buildVTubers(sortType.value);
+});
 
 watch(sortType, (newSortType) => {
-  vTubers.value = buildVTubers(newSortType)
-  updateSortTypeConfig(newSortType)
-})
+  vTubers.value = buildVTubers(newSortType);
+  updateSortTypeConfig(newSortType);
+});
 
 watch(displayCompanies, (newDisplayCompanies) => {
-  updateCompanyConfig(newDisplayCompanies)
-})
+  updateCompanyConfig(newDisplayCompanies);
+});
 </script>
 
 <template>
@@ -48,7 +48,7 @@ watch(displayCompanies, (newDisplayCompanies) => {
   <p class="config">
     <template v-for="sortTypeValue in sortTypes" :key="sortTypeValue">
       <label class="">
-        <input type="radio" v-model="sortType" :value="sortTypeValue" />
+        <input v-model="sortType" type="radio" :value="sortTypeValue" />
         {{ sortTypeTexts[sortTypeValue] }}
       </label>
     </template>
@@ -56,7 +56,7 @@ watch(displayCompanies, (newDisplayCompanies) => {
   <p class="config">
     <template v-for="company in companies" :key="company">
       <label>
-        <input type="checkbox" v-model="displayCompanies" :value="company" />
+        <input v-model="displayCompanies" type="checkbox" :value="company" />
         {{ companyTexts[company] }}
       </label>
     </template>
@@ -64,11 +64,7 @@ watch(displayCompanies, (newDisplayCompanies) => {
   <br />
   <div class="vTubers">
     <template v-for="vTuber in vTubers" :key="vTuber.key">
-      <VTuberCircle
-        :vTuber="vTuber"
-        :isOpenLinkNewTab="isOpenLinkNewTab"
-        :displayCompanies="displayCompanies"
-      />
+      <VTuberCircle :v-tuber="vTuber" :is-open-link-new-tab="isOpenLinkNewTab" :display-companies="displayCompanies" />
     </template>
   </div>
   <br class="cb" />

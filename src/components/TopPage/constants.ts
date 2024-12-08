@@ -1,21 +1,21 @@
-import { TCompany } from './functions/storages'
+import { TCompany } from './functions/storages';
 
 type TVtuber = {
-  key: string
-  name: string
-  debut0?: string
-  debut: string
-  debut1?: string
-  birthday: string
-  graduation?: string
-  height: number
-  other: string
-  group: string
-  sort: number
-  twitter: string
-  youtube: string
-  company: TCompany
-}
+  key: string;
+  name: string;
+  debut0?: string;
+  debut: string;
+  debut1?: string;
+  birthday: string;
+  graduation?: string;
+  height: number;
+  other: string;
+  group: string;
+  sort: number;
+  twitter: string;
+  youtube: string;
+  company: TCompany;
+};
 
 export const vTubers: TVtuber[] = [
   {
@@ -713,4 +713,4 @@ export const vTubers: TVtuber[] = [
     twitter: 'https://x.com/ui_shig',
     youtube: 'https://www.youtube.com/channel/UCt30jJgChL8qeT9VPadidSw',
   },
-]
+];

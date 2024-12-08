@@ -1,42 +1,37 @@
 <script setup lang="ts">
-import { VTuberData } from './functions/buildVTubers'
-import { TCompany } from './functions/storages'
-import Link from '../Link.vue'
+import { VTuberData } from './functions/buildVTubers';
+import { TCompany } from './functions/storages';
+import ExternalLink from '../ExternalLink.vue';
 
 const {
   vTuber: v,
   isOpenLinkNewTab,
   displayCompanies,
 } = defineProps<{
-  isOpenLinkNewTab: boolean
-  vTuber: VTuberData
-  displayCompanies: TCompany[]
-}>()
+  isOpenLinkNewTab: boolean;
+  vTuber: VTuberData;
+  displayCompanies: TCompany[];
+}>();
 
-const character_bg_img = (key: string) =>
-  `background-image: url('img/${key}.webp');`
+const character_bg_img = (key: string) => `background-image: url('img/${key}.webp');`;
 </script>
 
 <template>
-  <div
-    v-if="displayCompanies.includes(v.company)"
-    class="character-item"
-    :class="[v.class]"
-  >
+  <div v-if="displayCompanies.includes(v.company)" class="character-item" :class="[v.class]">
     <div class="character-circle">
       <span class="holomem-name">{{ v.name }}</span>
       <span class="holomem-msg">{{ v.msg }}</span>
       <span class="holomem-msg2">{{ v.msg2 }}</span>
       <span class="holomem-msg0">{{ v.msg0 }}</span>
       <span class="holomem-twitter">
-        <Link :isOpenLinkNewTab="isOpenLinkNewTab" :href="v.twitter"
+        <ExternalLink :is-open-link-new-tab="isOpenLinkNewTab" :href="v.twitter"
           ><img src="../../assets/twitter1.webp" width="30px"
-        /></Link>
+        /></ExternalLink>
       </span>
       <span class="holomem-youtube">
-        <Link :isOpenLinkNewTab="isOpenLinkNewTab" :href="v.youtube"
+        <ExternalLink :is-open-link-new-tab="isOpenLinkNewTab" :href="v.youtube"
           ><img src="../../assets/youtube.png" width="30px"
-        /></Link>
+        /></ExternalLink>
       </span>
     </div>
     <div class="character-circle-white"></div>
@@ -131,7 +126,7 @@ $border_size: 9px;
   z-index: 30;
 }
 
-/*　丸枠(青)の外側の白枠 */
+/* 丸枠(青)の外側の白枠 */
 $border_white_size: 5px;
 .character-circle-white {
   position: absolute;
