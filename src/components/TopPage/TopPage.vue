@@ -20,7 +20,7 @@ watch(isOpenLinkNewTab, (newIsOpenLinkNewTab) => {
     <label><input v-model="isOpenLinkNewTab" type="checkbox" />リンクを新しいタブで開く</label>
   </p>
   <h2>Links</h2>
-  <p>
+  <p class="linkRow">
     ホロライブ公式
     <ExternalLink :is-open-link-new-tab="isOpenLinkNewTab" href="https://twitter.com/hololivetv">
       <img src="../../assets/twitter1.webp" width="20px" />
@@ -37,16 +37,17 @@ watch(isOpenLinkNewTab, (newIsOpenLinkNewTab) => {
     <ExternalLink :is-open-link-new-tab="isOpenLinkNewTab" href="https://schedule.hololive.tv/lives/hololive">
       配信予定スケジュール
     </ExternalLink>
-    ／
-    <ExternalLink :is-open-link-new-tab="isOpenLinkNewTab" href="https://ch.nicovideo.jp/hololive">
-      ホロライブ公式ファンクラブ
-    </ExternalLink>
   </p>
   <VTuberList :is-open-link-new-tab="isOpenLinkNewTab" />
   <div class="emptyBottom" />
 </template>
 
 <style scoped>
+.linkRow {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
 .emptyBottom {
   margin-bottom: 200px;
 }
