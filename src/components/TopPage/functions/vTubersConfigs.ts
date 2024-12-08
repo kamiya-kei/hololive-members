@@ -53,11 +53,11 @@ export const loadIsFilterFavoriteVTubersConfig = (): boolean => {
 export const updateIsFilterFavoriteVTubersConfig = (isFilterFavoriteVTubers: boolean) =>
   setToStorage(FAVORITE_V_TUBER_FILTER_KEY, isFilterFavoriteVTubers ? 'true' : 'false');
 
-// 推し編集モード
-const FAVORITE_V_TUBER_EDIT_MODE_KEY = 'isFavoriteVTuberEditMode';
-export const loadIsFavoriteVTuberEditModeConfig = (): boolean => {
-  const config = getFromStorage(FAVORITE_V_TUBER_EDIT_MODE_KEY);
+// 推し強調
+const FAVORITE_V_TUBER_HIGHLIGHT_KEY = 'isFavoriteVTuberHighlight';
+export const loadIsFavoriteVTuberHighlightConfig = (): boolean => {
+  const config = getFromStorage(FAVORITE_V_TUBER_HIGHLIGHT_KEY);
   return config ? config === 'true' : false;
 };
-export const updateIsFavoriteVTuberEditModeConfig = (isFavoriteVTuberEditMode: boolean) =>
-  setToStorage(FAVORITE_V_TUBER_EDIT_MODE_KEY, isFavoriteVTuberEditMode ? 'true' : 'false');
+export const updateIsFavoriteVTuberHighlightConfig = (isFavoriteVTuberHighlight: boolean) =>
+  setToStorage(FAVORITE_V_TUBER_HIGHLIGHT_KEY, isFavoriteVTuberHighlight ? 'true' : 'false');

@@ -13,10 +13,10 @@ import {
   loadFavoriteVTubersKeysConfig,
   updateFavoriteVTubersKeysConfig,
   updateIsFilterFavoriteVTubersConfig,
-  loadIsFavoriteVTuberEditModeConfig,
   loadIsFilterFavoriteVTubersConfig,
-  updateIsFavoriteVTuberEditModeConfig,
   TCompany,
+  loadIsFavoriteVTuberHighlightConfig,
+  updateIsFavoriteVTuberHighlightConfig,
 } from './functions/vTubersConfigs';
 import { VTuberData, buildVTubers } from './functions/buildVTubers';
 import VTuberCircle from './VTuberCircle.vue';
@@ -41,11 +41,11 @@ const isFilterFavoriteVTubers = ref<boolean>(loadIsFilterFavoriteVTubersConfig()
 watch(isFilterFavoriteVTubers, (newIsFilterFavoriteVTubers) => {
   updateIsFilterFavoriteVTubersConfig(newIsFilterFavoriteVTubers);
 });
-
-const isFavoriteVTuberEditMode = ref<boolean>(loadIsFavoriteVTuberEditModeConfig());
-watch(isFavoriteVTuberEditMode, (newIsFavoriteVTuberEditMode) => {
-  updateIsFavoriteVTuberEditModeConfig(newIsFavoriteVTuberEditMode);
+const isFavoriteVTuberHighlight = ref<boolean>(loadIsFavoriteVTuberHighlightConfig());
+watch(isFavoriteVTuberHighlight, (newIsFavoriteVTuberHighlight) => {
+  updateIsFavoriteVTuberHighlightConfig(newIsFavoriteVTuberHighlight);
 });
+const isFavoriteVTuberEditMode = ref<boolean>(false);
 
 const favoriteVTuberKeys = ref<string[]>(loadFavoriteVTubersKeysConfig());
 const handleClickVTuber = (vTuber: VTuberData, newIsFavorite: boolean) => {
@@ -89,6 +89,10 @@ const filteredVTubers = computed<VTuberData[]>(() => {
       推しのみ表示
     </label>
     <label>
+      <input v-model="isFavoriteVTuberHighlight" type="checkbox" />
+      推し強調表示
+    </label>
+    <label>
       <input v-model="isFavoriteVTuberEditMode" type="checkbox" />
       推し編集モード
     </label>
@@ -101,6 +105,7 @@ const filteredVTubers = computed<VTuberData[]>(() => {
         :display-companies="displayCompanies"
         :is-favorite="favoriteVTuberKeys.includes(vTuber.key)"
         :is-favorite-v-tuber-edit-mode="isFavoriteVTuberEditMode"
+        :is-favorite-v-tuber-highlight="isFavoriteVTuberHighlight"
         @change-is-favorite="(newIsFavorite) => handleClickVTuber(vTuber, newIsFavorite)"
       />
     </template>
