@@ -1,4 +1,4 @@
-import { TCompany } from './functions/storages';
+import { TCompany } from './functions/vTubersConfigs';
 
 type TVtuber = {
   key: string;

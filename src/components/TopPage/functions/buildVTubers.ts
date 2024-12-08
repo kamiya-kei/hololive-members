@@ -1,5 +1,5 @@
 import { vTubers as vTubersData } from '../constants';
-import { TSortType } from './storages';
+import { TSortType } from './vTubersConfigs';
 
 export type VTuberData = (typeof vTubersData)[number] & {
   msg: string;

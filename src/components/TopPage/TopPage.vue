@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VTuberList from './VTuberList.vue';
-import ExternalLink from '@/components/TopPage/ExternalLink.vue';
-import ExternalLinkConfig from './ExternalLinkConfig.vue';
+import ExternalLink from '@/components/common/ExternalLink/ExternalLink.vue';
+import ExternalLinkConfig from '@/components/common/ExternalLink/ExternalLinkConfig.vue';
 </script>
 
 <template>

@@ -1,7 +1,5 @@
+import { getFromStorage, setToStorage } from '@/functions/storages';
 import { vTubers } from '../constants';
-
-const getFromStorage = (key: string) => localStorage.getItem(key);
-const setToStorage = (key: string, value: string) => localStorage.setItem(key, value);
 
 // 並び順
 export const sortTypes = ['group', 'debut', 'debutDate', 'birthday', 'height'] as const;
@@ -63,12 +61,3 @@ export const loadIsFavoriteVTuberEditModeConfig = (): boolean => {
 };
 export const updateIsFavoriteVTuberEditModeConfig = (isFavoriteVTuberEditMode: boolean) =>
   setToStorage(FAVORITE_V_TUBER_EDIT_MODE_KEY, isFavoriteVTuberEditMode ? 'true' : 'false');
-
-// 外部リンクの設定
-const IS_OPEN_LINK_NEW_TAB_KEY = 'isOpenLinkNewTab';
-export const loadIsOpenLinkNewTabConfig = (): boolean => {
-  const config = localStorage.getItem(IS_OPEN_LINK_NEW_TAB_KEY);
-  return config ? config === 'true' : true;
-};
-export const updateIsOpenLinkNewTabConfig = (isOpenLinkNewTab: boolean) =>
-  localStorage.setItem(IS_OPEN_LINK_NEW_TAB_KEY, isOpenLinkNewTab ? 'true' : 'false');

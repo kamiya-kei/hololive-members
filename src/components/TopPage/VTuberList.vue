@@ -17,7 +17,7 @@ import {
   loadIsFavoriteVTuberEditModeConfig,
   loadIsFilterFavoriteVTubersConfig,
   updateIsFavoriteVTuberEditModeConfig,
-} from './functions/storages';
+} from './functions/vTubersConfigs';
 import { VTuberData, buildVTubers } from './functions/buildVTubers';
 import VTuberCircle from './VTuberCircle.vue';
 
