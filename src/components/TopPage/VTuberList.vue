@@ -7,7 +7,6 @@ import {
   sortTypes,
   sortTypeTexts,
   loadCompanyConfig,
-  TCompany,
   updateCompanyConfig,
   companyTexts,
   companies,
@@ -17,31 +16,45 @@ import {
   loadIsFavoriteVTuberEditModeConfig,
   loadIsFilterFavoriteVTubersConfig,
   updateIsFavoriteVTuberEditModeConfig,
+  TCompany,
 } from './functions/vTubersConfigs';
 import { VTuberData, buildVTubers } from './functions/buildVTubers';
 import VTuberCircle from './VTuberCircle.vue';
 
-const sortType = defineModel<TSortType>('sortType', {
-  default: loadSortTypeConfig(),
-});
-
-const displayCompanies = defineModel<TCompany[]>('displayCompanies', {
-  default: loadCompanyConfig(),
-});
-
-const favoriteVTuberKeys = defineModel<string[]>('favoriteVTuberKeys', {
-  default: loadFavoriteVTubersKeysConfig(),
-});
-
-const isFilterFavoriteVTubers = defineModel<boolean>('isFilterFavoriteVTubers', {
-  default: loadIsFilterFavoriteVTubersConfig(),
-});
-
-const isFavoriteVTuberEditMode = defineModel<boolean>('isFavoriteVTuberEditMode', {
-  default: loadIsFavoriteVTuberEditModeConfig(),
-});
-
 const vTubers = ref<VTuberData[]>([]);
+onMounted(async () => {
+  vTubers.value = buildVTubers(sortType.value);
+});
+
+const sortType = ref<TSortType>(loadSortTypeConfig());
+watch(sortType, (newSortType) => {
+  vTubers.value = buildVTubers(newSortType);
+  updateSortTypeConfig(newSortType);
+});
+
+const displayCompanies = ref<TCompany[]>(loadCompanyConfig());
+watch(displayCompanies, (newDisplayCompanies) => {
+  updateCompanyConfig(newDisplayCompanies);
+});
+
+const isFilterFavoriteVTubers = ref<boolean>(loadIsFilterFavoriteVTubersConfig());
+watch(isFilterFavoriteVTubers, (newIsFilterFavoriteVTubers) => {
+  updateIsFilterFavoriteVTubersConfig(newIsFilterFavoriteVTubers);
+});
+
+const isFavoriteVTuberEditMode = ref<boolean>(loadIsFavoriteVTuberEditModeConfig());
+watch(isFavoriteVTuberEditMode, (newIsFavoriteVTuberEditMode) => {
+  updateIsFavoriteVTuberEditModeConfig(newIsFavoriteVTuberEditMode);
+});
+
+const favoriteVTuberKeys = ref<string[]>(loadFavoriteVTubersKeysConfig());
+const handleClickVTuber = (vTuber: VTuberData, newIsFavorite: boolean) => {
+  const newFavoriteVTuberKeys = newIsFavorite
+    ? [...favoriteVTuberKeys.value, vTuber.key]
+    : favoriteVTuberKeys.value.filter((key) => key !== vTuber.key);
+  favoriteVTuberKeys.value = newFavoriteVTuberKeys;
+  updateFavoriteVTubersKeysConfig(newFavoriteVTuberKeys);
+};
 
 const filteredVTubers = computed<VTuberData[]>(() => {
   return vTubers.value.filter((v) => {
@@ -50,39 +63,6 @@ const filteredVTubers = computed<VTuberData[]>(() => {
     return favoriteVTuberKeys.value.includes(v.key);
   });
 });
-
-onMounted(async () => {
-  vTubers.value = buildVTubers(sortType.value);
-});
-
-watch(sortType, (newSortType) => {
-  vTubers.value = buildVTubers(newSortType);
-  updateSortTypeConfig(newSortType);
-});
-
-watch(displayCompanies, (newDisplayCompanies) => {
-  updateCompanyConfig(newDisplayCompanies);
-});
-
-watch(favoriteVTuberKeys, (newFavoriteVTuberKeys) => {
-  updateFavoriteVTubersKeysConfig(newFavoriteVTuberKeys);
-});
-
-watch(isFilterFavoriteVTubers, (newIsFilterFavoriteVTubers) => {
-  updateIsFilterFavoriteVTubersConfig(newIsFilterFavoriteVTubers);
-});
-
-watch(isFavoriteVTuberEditMode, (newIsFavoriteVTuberEditMode) => {
-  updateIsFavoriteVTuberEditModeConfig(newIsFavoriteVTuberEditMode);
-});
-
-const handleClickVTuber = (vTuber: VTuberData, newIsFavorite: boolean) => {
-  const newFavoriteVTuberKeys = newIsFavorite
-    ? [...favoriteVTuberKeys.value, vTuber.key]
-    : favoriteVTuberKeys.value.filter((key) => key !== vTuber.key);
-  favoriteVTuberKeys.value = newFavoriteVTuberKeys;
-  updateFavoriteVTubersKeysConfig(newFavoriteVTuberKeys);
-};
 </script>
 
 <template>

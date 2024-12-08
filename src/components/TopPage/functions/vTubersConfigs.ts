@@ -29,11 +29,11 @@ export const companyTexts: Record<TCompany, string> = {
 };
 
 const COMPANY_KEY = 'displayCompanies';
-export const loadCompanyConfig = (): readonly TCompany[] => {
+export const loadCompanyConfig = (): TCompany[] => {
   const config = getFromStorage(COMPANY_KEY)?.split(',') ?? [];
-  return config ? companies.filter((v) => config.includes(v)) : companies;
+  return config ? companies.filter((v) => config.includes(v)) : [...companies];
 };
-export const updateCompanyConfig = (companies: TCompany[]) => setToStorage(COMPANY_KEY, companies.join(','));
+export const updateCompanyConfig = (companies: readonly TCompany[]) => setToStorage(COMPANY_KEY, companies.join(','));
 
 // 推し一覧
 const FAVORITE_V_TUBER_KEYS_KEY = 'favoriteVTubersKeys';
@@ -41,7 +41,7 @@ export const loadFavoriteVTubersKeysConfig = (): string[] => {
   const config = getFromStorage(FAVORITE_V_TUBER_KEYS_KEY)?.split(',') ?? [];
   return vTubers.flatMap(({ key }) => (config.includes(key) ? key : []));
 };
-export const updateFavoriteVTubersKeysConfig = (favoriteVTubersKeys: string[]) =>
+export const updateFavoriteVTubersKeysConfig = (favoriteVTubersKeys: readonly string[]) =>
   setToStorage(FAVORITE_V_TUBER_KEYS_KEY, favoriteVTubersKeys.join(','));
 
 // 推しフィルター
