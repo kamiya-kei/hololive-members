@@ -57,10 +57,10 @@ const handleClickVTuber = (vTuber: VTuberData, newIsFavorite: boolean) => {
 };
 
 const filteredVTubers = computed<VTuberData[]>(() => {
-  return vTubers.value.filter((v) => {
-    if (!displayCompanies.value.includes(v.company)) return false;
-    if (!isFilterFavoriteVTubers.value) return true;
-    return favoriteVTuberKeys.value.includes(v.key);
+  return vTubers.value.flatMap((v) => {
+    if (!displayCompanies.value.includes(v.company)) return [];
+    if (!isFilterFavoriteVTubers.value) return v;
+    return favoriteVTuberKeys.value.includes(v.key) ? { ...v, forceClearBoth: false } : [];
   });
 });
 </script>

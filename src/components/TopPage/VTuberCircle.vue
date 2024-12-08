@@ -24,7 +24,7 @@ const character_bg_img = (key: string) => `background-image: url('img/${key}.web
 </script>
 
 <template>
-  <div class="character-item" :class="[v.class]" @click="handleClick">
+  <div class="character-item" :class="[...(v.forceClearBoth ? ['cb'] : [])]" @click="handleClick">
     <div :class="['character-circle', ...(isFavorite && isFavoriteVTuberEditMode ? ['favorite'] : [])]">
       <span class="holomem-name">{{ v.name }}</span>
       <span class="holomem-msg">{{ v.msg }}</span>

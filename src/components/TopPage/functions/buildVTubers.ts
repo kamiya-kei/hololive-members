@@ -5,7 +5,7 @@ export type VTuberData = (typeof vTubersData)[number] & {
   msg: string;
   msg2: string;
   msg0: string;
-  class: string;
+  forceClearBoth?: boolean;
 };
 
 const extraction_date = (s: string) => s.split('-').slice(1).join('/');
@@ -16,7 +16,7 @@ const buildBySortGroup = (): VTuberData[] => {
     msg: ((s) => `${s[0]}年${s[1]}月${s[2]}日デビュー`)(v.debut.split(' ')[0].split('-')),
     msg2: ((s) => `誕生日:${s[0]}月${s[1]}日`)(v.birthday.split('/')),
     msg0: v.group,
-    class: (v.sort / 0.1) % 1 == 0 ? 'cb' : '',
+    forceClearBoth: (v.sort / 0.1) % 1 == 0,
   }));
   newVTubers.sort((a, b) => a.sort - b.sort);
   return newVTubers;
