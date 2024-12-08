@@ -66,7 +66,7 @@ const filteredVTubers = computed<VTuberData[]>(() => {
 </script>
 
 <template>
-  <h2>VTuber一覧</h2>
+  <h2>VTubers</h2>
   <p class="config">
     <template v-for="sortTypeValue in sortTypes" :key="sortTypeValue">
       <label class="">
