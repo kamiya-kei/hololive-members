@@ -1,6 +1,9 @@
+import { vTubers } from '../constants';
+
 const getFromStorage = (key: string) => localStorage.getItem(key);
 const setToStorage = (key: string, value: string) => localStorage.setItem(key, value);
 
+// 並び順
 export const sortTypes = ['group', 'debut', 'debutDate', 'birthday', 'height'] as const;
 export type TSortType = (typeof sortTypes)[number];
 export const sortTypeTexts: Record<TSortType, string> = {
@@ -18,6 +21,7 @@ export const loadSortTypeConfig = (): TSortType => {
 };
 export const updateSortTypeConfig = (sortType: TSortType) => setToStorage(SORT_TYPE_KEY, sortType);
 
+// 所属
 export const companies = ['hololive', 'individual', 'noripro'] as const;
 export type TCompany = (typeof companies)[number];
 export const companyTexts: Record<TCompany, string> = {
@@ -33,6 +37,34 @@ export const loadCompanyConfig = (): readonly TCompany[] => {
 };
 export const updateCompanyConfig = (companies: TCompany[]) => setToStorage(COMPANY_KEY, companies.join(','));
 
+// 推し一覧
+const FAVORITE_V_TUBER_KEYS_KEY = 'favoriteVTubersKeys';
+export const loadFavoriteVTubersKeysConfig = (): string[] => {
+  const config = getFromStorage(FAVORITE_V_TUBER_KEYS_KEY)?.split(',') ?? [];
+  return vTubers.flatMap(({ key }) => (config.includes(key) ? key : []));
+};
+export const updateFavoriteVTubersKeysConfig = (favoriteVTubersKeys: string[]) =>
+  setToStorage(FAVORITE_V_TUBER_KEYS_KEY, favoriteVTubersKeys.join(','));
+
+// 推しフィルター
+const FAVORITE_V_TUBER_FILTER_KEY = 'isFilterFavoriteVTubers';
+export const loadIsFilterFavoriteVTubersConfig = (): boolean => {
+  const config = getFromStorage(FAVORITE_V_TUBER_FILTER_KEY);
+  return config ? config === 'true' : false;
+};
+export const updateIsFilterFavoriteVTubersConfig = (isFilterFavoriteVTubers: boolean) =>
+  setToStorage(FAVORITE_V_TUBER_FILTER_KEY, isFilterFavoriteVTubers ? 'true' : 'false');
+
+// 推し編集モード
+const FAVORITE_V_TUBER_EDIT_MODE_KEY = 'isFavoriteVTuberEditMode';
+export const loadIsFavoriteVTuberEditModeConfig = (): boolean => {
+  const config = getFromStorage(FAVORITE_V_TUBER_EDIT_MODE_KEY);
+  return config ? config === 'true' : false;
+};
+export const updateIsFavoriteVTuberEditModeConfig = (isFavoriteVTuberEditMode: boolean) =>
+  setToStorage(FAVORITE_V_TUBER_EDIT_MODE_KEY, isFavoriteVTuberEditMode ? 'true' : 'false');
+
+// 外部リンクの設定
 const IS_OPEN_LINK_NEW_TAB_KEY = 'isOpenLinkNewTab';
 export const loadIsOpenLinkNewTabConfig = (): boolean => {
   const config = localStorage.getItem(IS_OPEN_LINK_NEW_TAB_KEY);

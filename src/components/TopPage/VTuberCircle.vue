@@ -1,34 +1,43 @@
 <script setup lang="ts">
 import { VTuberData } from './functions/buildVTubers';
-import { TCompany } from './functions/storages';
 import ExternalLink from '@/components/ExternalLink.vue';
 
 const {
   vTuber: v,
   isOpenLinkNewTab,
-  displayCompanies,
+  isFavoriteVTuberEditMode,
+  isFavorite,
 } = defineProps<{
   isOpenLinkNewTab: boolean;
   vTuber: VTuberData;
-  displayCompanies: TCompany[];
+  isFavoriteVTuberEditMode: boolean;
+  isFavorite: boolean;
 }>();
+
+const emit = defineEmits<{
+  (event: 'changeIsFavorite', newIsFavorite: boolean): void;
+}>();
+const handleClick = () => {
+  if (!isFavoriteVTuberEditMode) return;
+  emit('changeIsFavorite', !isFavorite);
+};
 
 const character_bg_img = (key: string) => `background-image: url('img/${key}.webp');`;
 </script>
 
 <template>
-  <div v-if="displayCompanies.includes(v.company)" class="character-item" :class="[v.class]">
-    <div class="character-circle">
+  <div class="character-item" :class="[v.class]" @click="handleClick">
+    <div :class="['character-circle', ...(isFavorite && isFavoriteVTuberEditMode ? ['favorite'] : [])]">
       <span class="holomem-name">{{ v.name }}</span>
       <span class="holomem-msg">{{ v.msg }}</span>
       <span class="holomem-msg2">{{ v.msg2 }}</span>
       <span class="holomem-msg0">{{ v.msg0 }}</span>
-      <span class="holomem-twitter">
+      <span class="holomem-twitter" @click="(e) => e.stopPropagation()">
         <ExternalLink :is-open-link-new-tab="isOpenLinkNewTab" :href="v.twitter"
           ><img src="../../assets/twitter1.webp" width="30px"
         /></ExternalLink>
       </span>
-      <span class="holomem-youtube">
+      <span class="holomem-youtube" @click="(e) => e.stopPropagation()">
         <ExternalLink :is-open-link-new-tab="isOpenLinkNewTab" :href="v.youtube"
           ><img src="../../assets/youtube.png" width="30px"
         /></ExternalLink>
@@ -124,6 +133,9 @@ $border_size: 9px;
   border-radius: 50%;
   border: $border_size solid rgba(1, 137, 179, 1);
   z-index: 30;
+}
+.favorite {
+  border: $border_size solid rgb(240, 130, 170);
 }
 
 /* 丸枠(青)の外側の白枠 */
