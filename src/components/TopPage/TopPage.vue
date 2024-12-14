@@ -8,7 +8,7 @@ import ExternalLinkConfig from '@/components/common/ExternalLink/ExternalLinkCon
   <h1>ホロライブメンバー + α 非公式まとめ</h1>
   <ExternalLinkConfig />
   <h2>Links</h2>
-  <p class="linkRow">
+  <p class="linkRow whiteBox">
     ホロライブ公式
     <ExternalLink href="https://twitter.com/hololivetv">
       <img src="../../assets/twitter1.webp" width="20px" />

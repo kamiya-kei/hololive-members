@@ -67,36 +67,38 @@ const filteredVTubers = computed<VTuberData[]>(() => {
 
 <template>
   <h2>VTubers</h2>
-  <p class="config">
-    <template v-for="sortTypeValue in sortTypes" :key="sortTypeValue">
-      <label class="">
-        <input v-model="sortType" type="radio" :value="sortTypeValue" />
-        {{ sortTypeTexts[sortTypeValue] }}
-      </label>
-    </template>
-  </p>
-  <p class="config">
-    <template v-for="company in companies" :key="company">
+  <div class="whiteBox">
+    <p class="config">
+      <template v-for="sortTypeValue in sortTypes" :key="sortTypeValue">
+        <label class="">
+          <input v-model="sortType" type="radio" :value="sortTypeValue" />
+          {{ sortTypeTexts[sortTypeValue] }}
+        </label>
+      </template>
+    </p>
+    <p class="config">
+      <template v-for="company in companies" :key="company">
+        <label>
+          <input v-model="displayCompanies" type="checkbox" :value="company" />
+          {{ companyTexts[company] }}
+        </label>
+      </template>
+    </p>
+    <p>
       <label>
-        <input v-model="displayCompanies" type="checkbox" :value="company" />
-        {{ companyTexts[company] }}
+        <input v-model="isFilterFavoriteVTubers" type="checkbox" />
+        推しのみ表示
       </label>
-    </template>
-  </p>
-  <p>
-    <label>
-      <input v-model="isFilterFavoriteVTubers" type="checkbox" />
-      推しのみ表示
-    </label>
-    <label>
-      <input v-model="isFavoriteVTuberHighlight" type="checkbox" />
-      推し強調表示
-    </label>
-    <label>
-      <input v-model="isFavoriteVTuberEditMode" type="checkbox" />
-      推し編集モード
-    </label>
-  </p>
+      <label>
+        <input v-model="isFavoriteVTuberHighlight" type="checkbox" />
+        推し強調表示
+      </label>
+      <label>
+        <input v-model="isFavoriteVTuberEditMode" type="checkbox" />
+        推し編集モード
+      </label>
+    </p>
+  </div>
   <br />
   <div class="vTubers">
     <template v-for="vTuber in filteredVTubers" :key="vTuber.key">

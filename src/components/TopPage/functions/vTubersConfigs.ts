@@ -30,7 +30,7 @@ export const companyTexts: Record<TCompany, string> = {
 
 const COMPANY_KEY = 'displayCompanies';
 export const loadCompanyConfig = (): TCompany[] => {
-  const config = getFromStorage(COMPANY_KEY)?.split(',') ?? [];
+  const config = getFromStorage(COMPANY_KEY)?.split(',');
   return config ? companies.filter((v) => config.includes(v)) : [...companies];
 };
 export const updateCompanyConfig = (companies: readonly TCompany[]) => setToStorage(COMPANY_KEY, companies.join(','));

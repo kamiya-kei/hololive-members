@@ -163,7 +163,7 @@ $border_out: 30px;
   margin-top: ($border_out * -1);
   margin-left: ($border_out * -1);
   border-radius: 50%;
-  border: ($border_size + $border_out) solid rgb(194, 238, 255);
+  border: ($border_size + $border_out) solid rgb(67, 226, 255);
   z-index: 10;
 }
 

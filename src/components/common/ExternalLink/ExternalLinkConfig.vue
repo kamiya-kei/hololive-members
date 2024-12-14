@@ -7,7 +7,7 @@ const { isOpenLinkNewTab } = storeToRefs(useIsOpenLinkNewTabConfig());
 
 <template>
   <h2>Configs</h2>
-  <p>
+  <p class="whiteBox">
     <label><input v-model="isOpenLinkNewTab" type="checkbox" />リンクを新しいタブで開く</label>
   </p>
 </template>
