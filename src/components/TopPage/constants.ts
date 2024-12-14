@@ -1,19 +1,23 @@
 import { TCompany } from './functions/vTubersConfigs';
 
+type TTwoDigit = `${number}${number}`;
+type TDateString = `20${TTwoDigit}-${TTwoDigit}-${TTwoDigit}`;
+type TDatetimeString = `${TDateString} ${TTwoDigit}:${TTwoDigit}`;
+
 type TVtuber = {
   key: string;
   name: string;
-  debut0?: string;
-  debut: string;
-  debut1?: string;
-  birthday: string;
-  graduation?: string;
+  debut: TDateString | TDatetimeString;
+  debut0?: TDateString | TDatetimeString;
+  debut1?: TDateString | TDatetimeString;
+  graduation?: TDateString | TDatetimeString;
+  birthday: `${number}/${number}`;
   height: number;
   other: string;
   group: string;
   sort: number;
-  twitter: string;
-  youtube: string;
+  twitter: `https://x.com/${string}`;
+  youtube: `https://www.youtube.com/${string}`;
   company: TCompany;
 };
 
@@ -34,7 +38,8 @@ export const vTubers: TVtuber[] = [
   {
     key: 'azki',
     name: 'Azki',
-    debut0: '2019-05-19', // イノナカとしてのデビュー日
+    debut0: '2018-11-15', // 個人として活動開始
+    debut1: '2019-05-19', // イノナカ加入日
     debut: '2022-04-01', // ホロライブ加入日
     birthday: '7/1',
     height: 168,
