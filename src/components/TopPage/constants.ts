@@ -7,11 +7,6 @@ type TDatetimeString = `${TDateString} ${TTwoDigit}:${TTwoDigit}`;
 type TVtuber = {
   key: string;
   name: string;
-  debut: TDateString | TDatetimeString;
-  debut0?: TDateString | TDatetimeString;
-  debut1?: TDateString | TDatetimeString;
-  graduation?: TDateString | TDatetimeString;
-  birthday: `${number}/${number}`;
   height: number;
   other: string;
   group: string;
@@ -19,13 +14,24 @@ type TVtuber = {
   twitter: `https://x.com/${string}`;
   youtube: `https://www.youtube.com/${string}`;
   company: TCompany;
+  birthday: `${number}/${number}`;
+  graduation?: TDateString | TDatetimeString;
+  debuts: {
+    date: TDateString | TDatetimeString;
+    description: string;
+  }[];
+  illustrator?: {
+    name: string;
+    twitter: `https://x.com/${string}`;
+    role?: string;
+  }[];
 };
 
 export const vTubers: TVtuber[] = [
   {
     key: 'sora',
     name: 'ときのそら',
-    debut: '2017-09-07',
+    debuts: [{ date: '2017-09-07', description: '初配信日' }],
     birthday: '5/15',
     height: 160,
     other: '',
@@ -34,13 +40,21 @@ export const vTubers: TVtuber[] = [
     sort: 100.0,
     twitter: 'https://x.com/tokino_sora',
     youtube: 'https://www.youtube.com/channel/UCp6993wxpyDPHUpavwDFqgg',
+    illustrator: [
+      {
+        name: 'おるだん',
+        twitter: 'https://x.com/ordan',
+      },
+    ],
   },
   {
     key: 'azki',
     name: 'Azki',
-    debut0: '2018-11-15', // 個人として活動開始
-    debut1: '2019-05-19', // イノナカ加入日
-    debut: '2022-04-01', // ホロライブ加入日
+    debuts: [
+      { date: '2018-11-15', description: '個人として活動開始' },
+      { date: '2019-05-19', description: 'イノナカ加入日' },
+      { date: '2022-04-01', description: 'ホロライブ加入日' },
+    ],
     birthday: '7/1',
     height: 168,
     other: '',
@@ -53,7 +67,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'roboco',
     name: 'ロボコさん',
-    debut: '2018-03-04',
+    debuts: [{ date: '2018-03-04', description: 'デビュー日' }],
     birthday: '5/23',
     height: 154,
     other: '',
@@ -62,12 +76,20 @@ export const vTubers: TVtuber[] = [
     sort: 100.01,
     twitter: 'https://x.com/robocosan',
     youtube: 'https://www.youtube.com/channel/UCDqI2jOz0weumE8s7paEk6g',
+    illustrator: [
+      {
+        name: '安曇アキタケ',
+        twitter: 'https://x.com/akitake_a',
+      },
+    ],
   },
   {
     key: 'miko',
     name: 'さくらみこ',
-    debut0: '2018-08-01', // ｢さくらみこProject」として活動開始
-    debut: '2018-12-25', // ホロライブ加入日
+    debuts: [
+      { date: '2018-08-01', description: '｢さくらみこProject」として活動開始' }, // 公式サイトにデビュー日として記載
+      { date: '2018-12-25', description: 'ホロライブ加入日' },
+    ],
     birthday: '3/5',
     height: 152,
     other: '',
@@ -76,11 +98,23 @@ export const vTubers: TVtuber[] = [
     sort: 100.02,
     twitter: 'https://x.com/sakuramiko35',
     youtube: 'https://www.youtube.com/channel/UC-hM6YJuNYVAmUWxeIr9FeA',
+    illustrator: [
+      {
+        name: '田中雄一',
+        twitter: 'https://x.com/momoko',
+        role: 'キャラクターデザイン',
+      },
+      {
+        name: 'おるだん',
+        twitter: 'https://x.com/ordan',
+        role: '新衣装デザイン',
+      },
+    ],
   },
   {
     key: 'fbk',
     name: '白上フブキ',
-    debut: '2018-06-01 00:02',
+    debuts: [{ date: '2018-06-01 00:02', description: '初配信日' }],
     birthday: '10/5',
     height: 155,
     other: '',
@@ -89,11 +123,17 @@ export const vTubers: TVtuber[] = [
     sort: 101.03,
     twitter: 'https://x.com/shirakamifubuki',
     youtube: 'https://www.youtube.com/channel/UCdn5BQ06XqgXoAxIhbqw5Rg',
+    illustrator: [
+      {
+        name: '凪白みと',
+        twitter: 'https://x.com/lemon_mito',
+      },
+    ],
   },
   {
     key: 'maturi',
     name: '夏色まつり',
-    debut: '2018-06-01 00:03',
+    debuts: [{ date: '2018-06-01 00:03', description: 'デビュー日' }],
     birthday: '7/22',
     height: 152,
     other: '',
@@ -106,7 +146,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'meru',
     name: '夜空メル',
-    debut: '2018-05-13',
+    debuts: [{ date: '2018-05-13', description: 'デビュー日' }],
     birthday: '10/31',
     height: 154,
     other: '',
@@ -119,7 +159,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'haato',
     name: '赤井はあと',
-    debut: '2018-06-02',
+    debuts: [{ date: '2018-06-02', description: 'デビュー日' }],
     birthday: '8/10',
     height: 154,
     other: '',
@@ -132,7 +172,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'akirose',
     name: 'アキ・ローゼンタール',
-    debut: '2018-06-01 00:00',
+    debuts: [{ date: '2018-06-01 00:00', description: 'デビュー日' }],
     birthday: '2/17',
     height: 162,
     other: '',
@@ -145,7 +185,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'aqua',
     name: '湊あくあ',
-    debut: '2018-08-08',
+    debuts: [{ date: '2018-08-08', description: 'デビュー日' }],
     graduation: '2024-08-28',
     birthday: '12/01',
     height: 148,
@@ -159,7 +199,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'choco',
     name: '癒月ちょこ',
-    debut: '2018-09-04',
+    debuts: [{ date: '2018-09-04', description: 'デビュー日' }],
     birthday: '2/14',
     height: 165,
     other: '',
@@ -172,7 +212,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'ayame',
     name: '百鬼あやめ',
-    debut: '2018-09-03',
+    debuts: [{ date: '2018-09-03', description: 'デビュー日' }],
     birthday: '12/13',
     height: 152,
     other: '',
@@ -185,7 +225,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'shion',
     name: '紫咲シオン',
-    debut: '2018-08-17',
+    debuts: [{ date: '2018-08-17', description: 'デビュー日' }],
     birthday: '12/8',
     height: 145,
     other: '',
@@ -198,7 +238,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'subaru',
     name: '大空スバル',
-    debut: '2018-09-16',
+    debuts: [{ date: '2018-09-16', description: 'デビュー日' }],
     birthday: '7/2',
     height: 154,
     other: '',
@@ -211,7 +251,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'mio',
     name: '大神ミオ',
-    debut: '2018-12-07',
+    debuts: [{ date: '2018-12-07', description: 'デビュー日' }],
     birthday: '8/20',
     height: 165,
     other: '',
@@ -224,7 +264,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'okayu',
     name: '猫又おかゆ',
-    debut: '2019-04-06',
+    debuts: [{ date: '2019-04-06', description: 'デビュー日' }],
     birthday: '2/22',
     height: 152,
     other: '',
@@ -237,7 +277,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'korone',
     name: '戌神ころね',
-    debut: '2019-04-13',
+    debuts: [{ date: '2019-04-13', description: 'デビュー日' }],
     birthday: '10/1',
     height: 156,
     other: '',
@@ -250,7 +290,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'flare',
     name: '不知火フレア',
-    debut: '2019-08-07',
+    debuts: [{ date: '2019-08-07', description: 'デビュー日' }],
     birthday: '4/2',
     height: 158,
     other: '',
@@ -263,7 +303,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'noel',
     name: '白銀ノエル',
-    debut: '2019-08-08',
+    debuts: [{ date: '2019-08-08', description: 'デビュー日' }],
     birthday: '11/24',
     height: 158,
     other: '胸：Kカップ',
@@ -276,7 +316,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'marine',
     name: '宝鐘マリン',
-    debut: '2019-08-11',
+    debuts: [{ date: '2019-08-11', description: 'デビュー日' }],
     birthday: '7/30',
     height: 150,
     other: '',
@@ -289,7 +329,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'pekora',
     name: '兎田ぺこら',
-    debut: '2019-07-17',
+    debuts: [{ date: '2019-07-17', description: 'デビュー日' }],
     birthday: '1/12',
     height: 153,
     other: '',
@@ -302,7 +342,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'rushia',
     name: '潤羽るしあ',
-    debut: '2019-07-18',
+    debuts: [{ date: '2019-07-18', description: 'デビュー日' }],
     birthday: '1/22',
     height: 143,
     other: '',
@@ -315,9 +355,11 @@ export const vTubers: TVtuber[] = [
   {
     key: 'suisei',
     name: '星街すいせい',
-    debut0: '2018-03-22', // 個人としてYoutubeで活用開始(twitterでの活動開始は3/18)
-    debut1: '2019-05-19', // イノナカ加入日
-    debut: '2019-12-01', // ホロライブ加入日
+    debuts: [
+      { date: '2018-03-22', description: '個人としてYoutubeで活用開始' }, // 公式サイトにデビュー日として記載。twitterでの活動開始は3/18
+      { date: '2019-05-19', description: 'イノナカ加入日' },
+      { date: '2019-12-01', description: 'ホロライブ加入日' },
+    ],
     birthday: '3/22',
     height: 160,
     other: '',
@@ -330,7 +372,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'kanata',
     name: '天音かなた',
-    debut: '2019-12-27',
+    debuts: [{ date: '2019-12-27', description: 'デビュー日' }],
     birthday: '4/22',
     height: 149,
     other: '',
@@ -343,7 +385,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'coco',
     name: '桐生ココ',
-    debut: '2019-12-28',
+    debuts: [{ date: '2019-12-28', description: 'デビュー日' }],
     graduation: '2021-07-01',
     birthday: '6/17',
     height: 180,
@@ -357,7 +399,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'watame',
     name: '角巻わため',
-    debut: '2019-12-29',
+    debuts: [{ date: '2019-12-29', description: 'デビュー日' }],
     birthday: '6/6',
     height: 151,
     other: '',
@@ -370,7 +412,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'towa',
     name: '常闇トワ',
-    debut: '2020-01-03',
+    debuts: [{ date: '2020-01-03', description: 'デビュー日' }],
     birthday: '8/8',
     height: 150,
     other: '',
@@ -383,7 +425,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'luna',
     name: '姫森ルーナ',
-    debut: '2020-01-04',
+    debuts: [{ date: '2020-01-04', description: 'デビュー日' }],
     birthday: '10/10',
     height: 150,
     other: '',
@@ -396,7 +438,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'lamy',
     name: '雪花ラミィ',
-    debut: '2020-08-12',
+    debuts: [{ date: '2020-08-12', description: 'デビュー日' }],
     birthday: '11/15',
     height: 158,
     other: '',
@@ -409,7 +451,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'nene',
     name: '桃鈴ねね',
-    debut: '2020-08-13',
+    debuts: [{ date: '2020-08-13', description: 'デビュー日' }],
     birthday: '3/2',
     height: 159,
     other: '',
@@ -422,7 +464,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'botan',
     name: '獅白ぼたん',
-    debut: '2020-08-14',
+    debuts: [{ date: '2020-08-14', description: 'デビュー日' }],
     birthday: '9/8',
     height: 166,
     other: '',
@@ -435,7 +477,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'polka',
     name: '尾丸ポルカ',
-    debut: '2020-08-16',
+    debuts: [{ date: '2020-08-16', description: 'デビュー日' }],
     birthday: '1/30',
     height: 153,
     other: '',
@@ -448,7 +490,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'la-darknesss',
     name: 'ラプラス・ダークネス',
-    debut: '2021-11-26',
+    debuts: [{ date: '2021-11-26', description: 'デビュー日' }],
     birthday: '5/25',
     height: 139,
     other: '秘密結社holoXの総帥',
@@ -461,7 +503,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'takane-lui',
     name: '鷹嶺ルイ',
-    debut: '2021-11-27',
+    debuts: [{ date: '2021-11-27', description: 'デビュー日' }],
     birthday: '6/11',
     height: 161,
     other: '秘密結社holoXの女幹部',
@@ -474,7 +516,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'hakui-koyori',
     name: '博衣こより',
-    debut: '2021-11-28',
+    debuts: [{ date: '2021-11-28', description: 'デビュー日' }],
     birthday: '3/15',
     height: 153,
     other: '秘密結社holoXの研究者',
@@ -487,7 +529,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'sakamata-chloe',
     name: '沙花叉クロヱ',
-    debut: '2021-11-29',
+    debuts: [{ date: '2021-11-29', description: 'デビュー日' }],
     birthday: '5/18',
     height: 148,
     other: '秘密結社holoXの掃除屋・インターン生',
@@ -500,7 +542,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'kazama-iroha',
     name: '風真いろは',
-    debut: '2021-11-30',
+    debuts: [{ date: '2021-11-30', description: 'デビュー日' }],
     birthday: '6/18',
     height: 156,
     other: '秘密結社holoXの用心棒',
@@ -513,7 +555,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'hiodoshi-ao',
     name: '火威青',
-    debut: '2023-09-09 20:00',
+    debuts: [{ date: '2023-09-09 20:00', description: 'デビュー日' }],
     birthday: '2/27',
     height: 171,
     other: '',
@@ -526,7 +568,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'otonose-kanade',
     name: '音乃瀬奏',
-    debut: '2023-09-09 20:30',
+    debuts: [{ date: '2023-09-09 20:30', description: 'デビュー日' }],
     birthday: '4/20',
     height: 153,
     other: '',
@@ -539,7 +581,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'ichijou-ririka',
     name: '一条莉々華',
-    debut: '2023-09-09 21:00',
+    debuts: [{ date: '2023-09-09 21:00', description: 'デビュー日' }],
     birthday: '5/12',
     height: 162,
     other: '',
@@ -552,7 +594,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'juufuutei-raden',
     name: '儒烏風亭らでん',
-    debut: '2023-09-10 20:00',
+    debuts: [{ date: '2023-09-10 20:00', description: 'デビュー日' }],
     birthday: '2/4',
     height: 159,
     other: '',
@@ -565,7 +607,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'todoroki-hajime',
     name: '轟はじめ',
-    debut: '2023-09-10 20:30',
+    debuts: [{ date: '2023-09-10 20:30', description: 'デビュー日' }],
     birthday: '6/7',
     height: 155,
     other: '',
@@ -578,7 +620,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'isakiriona',
     name: '響咲 リオナ',
-    debut: '2024-11-09 20:00',
+    debuts: [{ date: '2024-11-09 20:00', description: 'デビュー日' }],
     birthday: '5/29',
     height: 160,
     other: '',
@@ -591,7 +633,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'koganeiniko',
     name: '虎金妃笑虎',
-    debut: '2024-11-09 20:30',
+    debuts: [{ date: '2024-11-09 20:30', description: 'デビュー日' }],
     birthday: '7/25',
     height: 172,
     other: '',
@@ -604,7 +646,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'mizumiya_su',
     name: '水宮枢',
-    debut: '2024-11-09 21:00',
+    debuts: [{ date: '2024-11-09 21:00', description: 'デビュー日' }],
     birthday: '6/16',
     height: 151,
     other: '',
@@ -617,7 +659,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'rindochihaya',
     name: '輪堂千速',
-    debut: '2024-11-09 21:30',
+    debuts: [{ date: '2024-11-09 21:30', description: 'デビュー日' }],
     birthday: '7/8',
     height: 168,
     other: '',
@@ -630,7 +672,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'kikiraravivi',
     name: '綺々羅々ヴィヴィ',
-    debut: '2024-11-09 22:00',
+    debuts: [{ date: '2024-11-09 22:00', description: 'デビュー日' }],
     birthday: '8/27',
     height: 161,
     other: '',
@@ -643,7 +685,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'yuki_sakuna',
     name: '結城さくな',
-    debut: '2024-10-27',
+    debuts: [{ date: '2024-10-27', description: 'デビュー日' }],
     birthday: '12/2',
     height: 148,
     other: '10000歳',
@@ -656,7 +698,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'kson',
     name: 'kson',
-    debut: '2021-10-16',
+    debuts: [{ date: '2021-10-16', description: 'デビュー日' }],
     birthday: '11/1',
     height: 189.3,
     other: '総長',
@@ -669,7 +711,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'hanamiya_rica',
     name: '花宮莉歌',
-    debut: '2024-10-31',
+    debuts: [{ date: '2024-10-31', description: 'デビュー日' }],
     birthday: '7/28',
     height: 154,
     other: '',
@@ -682,7 +724,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'kagura_mea',
     name: '神楽めあ',
-    debut: '2018-06-28',
+    debuts: [{ date: '2018-06-28', description: 'デビュー日' }],
     birthday: '8/2',
     height: 155,
     other: '',
@@ -695,7 +737,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'inuyama_tamaki',
     name: '犬山たまき',
-    debut: '2018-09-22',
+    debuts: [{ date: '2018-09-22', description: 'デビュー日' }],
     birthday: '6/1',
     height: 158,
     other: '',
@@ -708,7 +750,7 @@ export const vTubers: TVtuber[] = [
   {
     key: 'ui_shig',
     name: 'しぐれうい',
-    debut: '2018-11-02',
+    debuts: [{ date: '2018-11-02', description: 'デビュー日' }],
     birthday: '5/30',
     height: 149,
     other: '',

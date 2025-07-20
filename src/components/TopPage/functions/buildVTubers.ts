@@ -13,7 +13,7 @@ const extraction_date = (s: string) => s.split('-').slice(1).join('/');
 const buildBySortGroup = (): VTuberData[] => {
   const newVTubers: VTuberData[] = vTubersData.map((v) => ({
     ...v,
-    msg: ((s) => `${s[0]}年${s[1]}月${s[2]}日デビュー`)(v.debut.split(' ')[0].split('-')),
+    msg: ((s) => `${s[0]}年${s[1]}月${s[2]}日デビュー`)(v.debuts[0].date.split(' ')[0].split('-')),
     msg2: ((s) => `誕生日:${s[0]}月${s[1]}日`)(v.birthday.split('/')),
     msg0: v.group,
     forceClearBoth: (v.sort / 0.1) % 1 == 0,
@@ -25,25 +25,26 @@ const buildBySortGroup = (): VTuberData[] => {
 const buildBySortDebut = (): VTuberData[] => {
   const newVTubers: VTuberData[] = vTubersData.map((v) => ({
     ...v,
-    msg: ((s) => `${s[0]}年${s[1]}月${s[2]}日デビュー`)(v.debut.split(' ')[0].split('-')),
+    msg: ((s) => `${s[0]}年${s[1]}月${s[2]}日デビュー`)(v.debuts[0].date.split(' ')[0].split('-')),
     msg2: ((s) => `誕生日:${s[0]}月${s[1]}日`)(v.birthday.split('/')),
     msg0: v.group,
     class: '',
   }));
-  newVTubers.sort((a, b) => new Date(a.debut).getTime() - new Date(b.debut).getTime());
+  newVTubers.sort((a, b) => new Date(a.debuts[0].date).getTime() - new Date(b.debuts[0].date).getTime());
   return newVTubers;
 };
 
 const buildBySortDebutDate = (): VTuberData[] => {
   const newVTubers: VTuberData[] = vTubersData.map((v) => ({
     ...v,
-    msg: ((s) => `${s[1]}月${s[2]}日デビュー`)(v.debut.split(' ')[0].split('-')),
+    msg: ((s) => `${s[1]}月${s[2]}日デビュー`)(v.debuts[0].date.split(' ')[0].split('-')),
     msg2: ((s) => `誕生日:${s[0]}月${s[1]}日`)(v.birthday.split('/')),
     msg0: v.group,
     class: '',
   }));
   newVTubers.sort(
-    (a, b) => new Date(extraction_date(a.debut)).getTime() - new Date(extraction_date(b.debut)).getTime()
+    (a, b) =>
+      new Date(extraction_date(a.debuts[0].date)).getTime() - new Date(extraction_date(b.debuts[0].date)).getTime()
   );
   return newVTubers;
 };
