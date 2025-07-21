@@ -5,7 +5,7 @@ import ExternalLinkConfig from '@/components/common/ExternalLink/ExternalLinkCon
 </script>
 
 <template>
-  <h1>ホロライブメンバー + α 非公式まとめ</h1>
+  <h1>ホロライブメンバー + α vTuberリンク集</h1>
   <ExternalLinkConfig />
   <h2>Links</h2>
   <p class="linkRow whiteBox">
