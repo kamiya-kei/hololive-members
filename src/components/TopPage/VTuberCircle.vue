@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
 import { VTuberData } from './functions/buildVTubers';
 import ExternalLink from '@/components/common/ExternalLink/ExternalLink.vue';
+import { useIsXSubAccount } from '../common/ExternalLink/stores/useIsXSubAccount';
 
 const {
   vTuber: v,
@@ -23,6 +25,9 @@ const handleClick = () => {
 };
 
 const character_bg_img = (key: string) => `background-image: url('img/${key}.webp');`;
+
+const { isXSubAccount } = storeToRefs(useIsXSubAccount());
+const xLink = (v: VTuberData) => (isXSubAccount.value && v.twitterSub ? (v.twitterSub ?? v.twitter) : v.twitter);
 </script>
 
 <template>
@@ -38,7 +43,7 @@ const character_bg_img = (key: string) => `background-image: url('img/${key}.web
       <span class="holomem-msg2">{{ v.msg2 }}</span>
       <span class="holomem-msg0">{{ v.msg0 }}</span>
       <span class="holomem-twitter" @click="(e) => e.stopPropagation()">
-        <ExternalLink :href="v.twitter"><img src="../../assets/twitter1.webp" width="30px" /></ExternalLink>
+        <ExternalLink :href="xLink(v)"><img src="../../assets/twitter1.webp" width="30px" /></ExternalLink>
       </span>
       <span class="holomem-youtube" @click="(e) => e.stopPropagation()">
         <ExternalLink :href="v.youtube"><img src="../../assets/youtube.png" width="30px" /></ExternalLink>

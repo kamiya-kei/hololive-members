@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import VTuberList from './VTuberList.vue';
 import ExternalLink from '@/components/common/ExternalLink/ExternalLink.vue';
-import ExternalLinkConfig from '@/components/common/ExternalLink/ExternalLinkConfig.vue';
+import LinkConfigs from '@/components/common/ExternalLink/LinkConfigs.vue';
 </script>
 
 <template>
   <h1>ホロライブメンバー + α vTuberリンク集</h1>
-  <ExternalLinkConfig />
+  <LinkConfigs />
   <h2>Links</h2>
   <p class="linkRow whiteBox">
     ホロライブ公式

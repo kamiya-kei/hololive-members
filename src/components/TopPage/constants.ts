@@ -5,26 +5,27 @@ type TDateString = `20${TTwoDigit}-${TTwoDigit}-${TTwoDigit}`;
 type TDatetimeString = `${TDateString} ${TTwoDigit}:${TTwoDigit}`;
 
 type TVtuber = {
-  key: string;
-  name: string;
-  height: number;
-  other: string;
-  group: string;
-  sort: number;
-  twitter: `https://x.com/${string}`;
+  key: string; // ユニークID
+  name: string; // 名前
+  height: number; // 身長
+  other: string; // その他情報
+  group: string; // 所属ユニット・期生
+  sort: number; // ソート用
+  twitter: `https://x.com/${string}`; // Xメインアカウント
+  twitterSub?: `https://x.com/${string}`; // Xサブアカウント
   youtube: `https://www.youtube.com/${string}`;
-  company: TCompany;
-  birthday: `${number}/${number}`;
-  graduation?: TDateString | TDatetimeString;
+  company: TCompany; // 所属グループ・事務所/個人勢
+  birthday: `${number}/${number}`; // 誕生日
+  graduation?: TDateString | TDatetimeString; // 卒業日
   debuts: {
     date: TDateString | TDatetimeString;
     description: string;
-  }[];
+  }[]; // 初配信日、グループ加入日など
   illustrator?: {
     name: string;
     twitter: `https://x.com/${string}`;
     role?: string;
-  }[];
+  }[]; // イラストレーター情報
 };
 
 export const vTubers: TVtuber[] = [
@@ -75,6 +76,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 100.01,
     twitter: 'https://x.com/robocosan',
+    twitterSub: 'https://x.com/robocosan_sub',
     youtube: 'https://www.youtube.com/channel/UCDqI2jOz0weumE8s7paEk6g',
     illustrator: [
       {
@@ -97,6 +99,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 100.02,
     twitter: 'https://x.com/sakuramiko35',
+    twitterSub: 'https://x.com/mikochisub',
     youtube: 'https://www.youtube.com/channel/UC-hM6YJuNYVAmUWxeIr9FeA',
     illustrator: [
       {
@@ -112,6 +115,24 @@ export const vTubers: TVtuber[] = [
     ],
   },
   {
+    key: 'suisei',
+    name: '星街すいせい',
+    debuts: [
+      { date: '2018-03-22', description: '個人としてYoutubeで活用開始' }, // 公式サイトにデビュー日として記載。twitterでの活動開始は3/18
+      { date: '2019-05-19', description: 'イノナカ加入日' },
+      { date: '2019-12-01', description: 'ホロライブ加入日' },
+    ],
+    birthday: '3/22',
+    height: 160,
+    other: '',
+    group: '0期生',
+    company: 'hololive',
+    sort: 100.05,
+    twitter: 'https://x.com/suisei_hosimati',
+    twitterSub: 'https://x.com/suisei_submati',
+    youtube: 'https://www.youtube.com/channel/UC5CwaMl1eIgY8h02uZw7u8A',
+  },
+  {
     key: 'fbk',
     name: '白上フブキ',
     debuts: [{ date: '2018-06-01 00:02', description: '初配信日' }],
@@ -122,6 +143,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 101.03,
     twitter: 'https://x.com/shirakamifubuki',
+    twitterSub: 'https://x.com/fubuchandayo',
     youtube: 'https://www.youtube.com/channel/UCdn5BQ06XqgXoAxIhbqw5Rg',
     illustrator: [
       {
@@ -141,6 +163,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 101.04,
     twitter: 'https://x.com/natsuiromatsuri',
+    twitterSub: 'https://x.com/7216_2nd',
     youtube: 'https://www.youtube.com/channel/UCQ0UDLQCjY0rmuxCDE38FGg',
   },
   {
@@ -154,6 +177,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 101.0,
     twitter: 'https://x.com/yozoramel',
+    twitterSub: 'https://x.com/YozoramelS',
     youtube: 'https://www.youtube.com/channel/UCD8HOxPs4Xvsm8H0ZxXGiBw',
   },
   {
@@ -167,6 +191,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 101.02,
     twitter: 'https://x.com/akaihaato',
+    twitterSub: 'https://x.com/akaihaatosub',
     youtube: 'https://www.youtube.com/channel/UC1CfXB_kRs3C-zaeTG3oGyg',
   },
   {
@@ -180,6 +205,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 101.01,
     twitter: 'https://x.com/akirosenthal',
+    twitterSub: 'https://x.com/akirose_sub',
     youtube: 'https://www.youtube.com/channel/UCFTLzh12_nrtzqBPsTCqenA',
   },
   {
@@ -220,6 +246,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 102.02,
     twitter: 'https://x.com/nakiriayame',
+    twitterSub: 'https://x.com/YODAYOsub',
     youtube: 'https://www.youtube.com/channel/UC7fk0CB07ly8oSl0aqKkqFg',
   },
   {
@@ -234,6 +261,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 102.01,
     twitter: 'https://x.com/murasakishionch',
+    twitterSub: 'https://x.com/shionchan_o',
     youtube: 'https://www.youtube.com/channel/UCXTpFs_3PqI41qX2d9tL2Rw',
   },
   {
@@ -260,6 +288,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 102.5,
     twitter: 'https://x.com/ookamimio',
+    twitterSub: 'https://x.com/ookamimio_sab',
     youtube: 'https://www.youtube.com/channel/UCp-5t9SrOQwXMU7iIjQfARg',
   },
   {
@@ -273,6 +302,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 102.51,
     twitter: 'https://x.com/nekomataokayu',
+    twitterSub: 'https://x.com/MO_OKAYU_GU',
     youtube: 'https://www.youtube.com/channel/UCvaTdHTWBGv3MKj3KVqJVCw',
   },
   {
@@ -286,6 +316,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 102.52,
     twitter: 'https://x.com/inugamikorone',
+    twitterSub: 'https://x.com/k5r6n3',
     youtube: 'https://www.youtube.com/channel/UChAnqc_AY5_I3Px5dig3X1Q',
   },
   {
@@ -299,6 +330,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 103.02,
     twitter: 'https://x.com/shiranuiflare',
+    twitterSub: 'https://x.com/fuu_tan_sub',
     youtube: 'https://www.youtube.com/channel/UCvInZx9h3jC2JzsIzoOebWg',
   },
   {
@@ -312,6 +344,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 103.03,
     twitter: 'https://x.com/shiroganenoel',
+    twitterSub: 'https://x.com/danchou_sub',
     youtube: 'https://www.youtube.com/channel/UCdyqAaZDKHXg4Ahi7VENThQ',
   },
   {
@@ -338,6 +371,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 103.0,
     twitter: 'https://x.com/usadapekora',
+    twitterSub: 'https://x.com/uraakapeko',
     youtube: 'https://www.youtube.com/channel/UC1DCedRgGHBdm81E1llLhOQ',
   },
   {
@@ -354,23 +388,6 @@ export const vTubers: TVtuber[] = [
     youtube: 'https://www.youtube.com/channel/UCl_gCybOJRIgOXw6Qb4qJzQ',
   },
   {
-    key: 'suisei',
-    name: '星街すいせい',
-    debuts: [
-      { date: '2018-03-22', description: '個人としてYoutubeで活用開始' }, // 公式サイトにデビュー日として記載。twitterでの活動開始は3/18
-      { date: '2019-05-19', description: 'イノナカ加入日' },
-      { date: '2019-12-01', description: 'ホロライブ加入日' },
-    ],
-    birthday: '3/22',
-    height: 160,
-    other: '',
-    group: '0期生',
-    company: 'hololive',
-    sort: 100.05,
-    twitter: 'https://x.com/suisei_hosimati',
-    youtube: 'https://www.youtube.com/channel/UC5CwaMl1eIgY8h02uZw7u8A',
-  },
-  {
     key: 'kanata',
     name: '天音かなた',
     debuts: [{ date: '2019-12-27', description: 'デビュー日' }],
@@ -381,6 +398,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 104.0,
     twitter: 'https://x.com/amanekanatach',
+    twitterSub: 'https://x.com/subtasochan',
     youtube: 'https://www.youtube.com/channel/UCZlDXzGoo7d44bwdNObFacg',
   },
   {
@@ -434,6 +452,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 104.04,
     twitter: 'https://x.com/himemoriluna',
+    twitterSub: 'https://x.com/lunatan_nanora',
     youtube: 'https://www.youtube.com/channel/UCa9Y57gfeY0Zro_noHRVrnw',
   },
   {
@@ -447,6 +466,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 105.0,
     twitter: 'https://x.com/yukihanalamy',
+    twitterSub: 'https://x.com/YukihanaWamy',
     youtube: 'https://www.youtube.com/channel/UCFKOVgVbGmX65RxO3EtH3iw',
   },
   {
@@ -460,6 +480,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 105.01,
     twitter: 'https://x.com/momosuzunene',
+    twitterSub: 'https://x.com/_nenechidayo',
     youtube: 'https://www.youtube.com/channel/UCAWSyEs_Io8MtpY3m-zqILA',
   },
   {
@@ -473,6 +494,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 105.02,
     twitter: 'https://x.com/shishirobotan',
+    twitterSub: 'https://x.com/446_bo',
     youtube: 'https://www.youtube.com/channel/UCUKD-uaobj9jiqB-VXt71mA',
   },
   {
@@ -486,6 +508,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 105.03,
     twitter: 'https://x.com/omarupolka',
+    twitterSub: 'https://x.com/polkasub',
     youtube: 'https://www.youtube.com/channel/UCK9V2B22uJYu3N7eR_BT9QA',
   },
   {
@@ -499,6 +522,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 106.0,
     twitter: 'https://x.com/LaplusDarknesss',
+    twitterSub: 'https://x.com/wagahaida_L',
     youtube: 'https://www.youtube.com/channel/UCENwRMx5Yh42zWpzURebzTw',
   },
   {
@@ -512,6 +536,7 @@ export const vTubers: TVtuber[] = [
     company: 'hololive',
     sort: 106.01,
     twitter: 'https://x.com/takanelui',
+    twitterSub: 'https://x.com/sub_luilui',
     youtube: 'https://www.youtube.com/channel/UCs9_O1tRPMQTHQ-N_L6FU2g',
   },
   {
@@ -723,7 +748,7 @@ export const vTubers: TVtuber[] = [
     twitter: 'https://x.com/amagai_ruka',
     youtube: 'https://www.youtube.com/channel/UClS3cnIUM9yzsBPQzeyX_8Q',
   },
-    {
+  {
     key: 'hanamiya_rica',
     name: '花宮莉歌',
     debuts: [{ date: '2024-10-31', description: 'デビュー日' }],
@@ -771,7 +796,7 @@ export const vTubers: TVtuber[] = [
     other: '',
     group: '個人勢',
     company: 'individual',
-    sort: 1.00,
+    sort: 1.0,
     twitter: 'https://x.com/KaguraMea_VoV',
     youtube: 'https://www.youtube.com/channel/UCWCc8tO-uUl_7SJXIKJACMw',
   },
