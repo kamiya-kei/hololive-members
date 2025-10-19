@@ -63,6 +63,12 @@ const filteredVTubers = computed<VTuberData[]>(() => {
     return favoriteVTuberKeys.value.includes(v.key) ? { ...v, forceClearBoth: false } : [];
   });
 });
+
+// アニメーションがズレないようにVTuber一覧のkeyを変える
+const keyVersion = ref(0);
+watch([sortType, displayCompanies, isFilterFavoriteVTubers], () => {
+  keyVersion.value++;
+});
 </script>
 
 <template>
@@ -101,7 +107,7 @@ const filteredVTubers = computed<VTuberData[]>(() => {
   </div>
   <br />
   <div class="vTubers">
-    <template v-for="vTuber in filteredVTubers" :key="vTuber.key">
+    <template v-for="vTuber in filteredVTubers" :key="vTuber.key + '-' + keyVersion">
       <VTuberCircle
         :v-tuber="vTuber"
         :display-companies="displayCompanies"
