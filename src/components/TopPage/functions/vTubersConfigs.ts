@@ -20,12 +20,15 @@ export const loadSortTypeConfig = (): TSortType => {
 export const updateSortTypeConfig = (sortType: TSortType) => setToStorage(SORT_TYPE_KEY, sortType);
 
 // 所属
-export const companies = ['hololive', 'individual', 'noripro'] as const;
+export const companies = ['hololive', 'individual', 'nijisanji', 'vspo', 'noripro', 'aogiri'] as const;
 export type TCompany = (typeof companies)[number];
 export const companyTexts: Record<TCompany, string> = {
   hololive: 'ホロライブ',
   individual: '個人勢',
+  nijisanji: 'にじさんじ',
   noripro: 'のりプロ',
+  vspo: 'ぶいすぽっ！',
+  aogiri: 'あおぎり高校',
 };
 
 const COMPANY_KEY = 'displayCompanies';
