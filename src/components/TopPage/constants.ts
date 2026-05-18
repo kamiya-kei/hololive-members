@@ -762,6 +762,28 @@ export const vTubers: TVtuber[] = [
     youtube: 'https://www.youtube.com/channel/UCz4jhqrCfthF8NnldZeK_rw',
   },
   {
+    key: 'mizuchima_komori',
+    name: '鮫升コモリ',
+    debuts: [
+      { date: '2026-04-29', description: 'デビュー日' },
+      { date: '2026-05-03', description: '初配信日' },
+    ],
+    birthday: '3/25',
+    height: 180,
+    other: 'アホ毛・ヒール含む（素の身長-7cm）',
+    group: '個人勢',
+    company: 'individual',
+    sort: 0.04,
+    twitter: 'https://x.com/mizuchimakomori',
+    youtube: 'https://www.youtube.com/@mizuchimakomori',
+    illustrator: [
+      {
+        name: 'トマリ',
+        twitter: 'https://x.com/ttomarii',
+      },
+    ],
+  },
+  {
     key: 'kson',
     name: 'kson',
     debuts: [{ date: '2021-10-16', description: 'デビュー日' }],
