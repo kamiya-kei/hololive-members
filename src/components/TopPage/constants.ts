@@ -170,6 +170,7 @@ export const vTubers: TVtuber[] = [
     key: 'meru',
     name: '夜空メル',
     debuts: [{ date: '2018-05-13', description: 'デビュー日' }],
+    graduation: '2024-01-16', // 契約解除
     birthday: '10/31',
     height: 154,
     other: '',
@@ -378,6 +379,7 @@ export const vTubers: TVtuber[] = [
     key: 'rushia',
     name: '潤羽るしあ',
     debuts: [{ date: '2019-07-18', description: 'デビュー日' }],
+    graduation: '2022-02-24', // 契約解除
     birthday: '1/22',
     height: 143,
     other: '',
@@ -391,6 +393,7 @@ export const vTubers: TVtuber[] = [
     key: 'kanata',
     name: '天音かなた',
     debuts: [{ date: '2019-12-27', description: 'デビュー日' }],
+    graduation: '2025-12-27',
     birthday: '4/22',
     height: 149,
     other: '',
@@ -583,6 +586,7 @@ export const vTubers: TVtuber[] = [
     key: 'hiodoshi-ao',
     name: '火威青',
     debuts: [{ date: '2023-09-09 20:00', description: 'デビュー日' }],
+    graduation: '2025-10-03',
     birthday: '2/27',
     height: 171,
     other: '',

@@ -73,6 +73,23 @@ const buildBySortHeight = (): VTuberData[] => {
   return newVTubers;
 };
 
+// 卒業日順は卒業済みのVTuberのみを卒業日の降順(新しい順)で表示する
+const buildBySortGraduation = (): VTuberData[] => {
+  const newVTubers = vTubersData.flatMap((v) => {
+    const graduation = v.graduation;
+    if (!graduation) return [];
+    return {
+      ...v,
+      graduation,
+      msg: ((s) => `${s[0]}年${s[1]}月${s[2]}日卒業`)(graduation.split(' ')[0].split('-')),
+      msg2: '',
+      msg0: v.group,
+    };
+  });
+  newVTubers.sort((a, b) => new Date(b.graduation).getTime() - new Date(a.graduation).getTime());
+  return newVTubers;
+};
+
 export const buildVTubers = (sortType: TSortType): VTuberData[] => {
   switch (sortType) {
     case 'group':
@@ -85,6 +102,8 @@ export const buildVTubers = (sortType: TSortType): VTuberData[] => {
       return buildBySortBirthday();
     case 'height':
       return buildBySortHeight();
+    case 'graduation':
+      return buildBySortGraduation();
     default:
       throw new Error('invalid sortType');
   }

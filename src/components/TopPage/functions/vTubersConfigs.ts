@@ -2,7 +2,7 @@ import { getFromStorage, setToStorage } from '@/functions/storages';
 import { vTubers } from '../constants';
 
 // 並び順
-export const sortTypes = ['group', 'debut', 'debutDate', 'birthday', 'height'] as const;
+export const sortTypes = ['group', 'debut', 'debutDate', 'birthday', 'height', 'graduation'] as const;
 export type TSortType = (typeof sortTypes)[number];
 export const sortTypeTexts: Record<TSortType, string> = {
   group: 'グループ',
@@ -10,6 +10,7 @@ export const sortTypeTexts: Record<TSortType, string> = {
   debutDate: 'デビュー日順',
   birthday: '誕生日順',
   height: '身長順',
+  graduation: '卒業日順',
 };
 
 const SORT_TYPE_KEY = 'sortType';
