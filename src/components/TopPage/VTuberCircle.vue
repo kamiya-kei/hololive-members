@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { VTuberData } from './functions/buildVTubers';
+import { currentAnimationDelay, observeIsVisible } from './functions/vTuberAnimation';
 import ExternalLink from '@/components/common/ExternalLink/ExternalLink.vue';
 import { useIsXSubAccount } from '../common/ExternalLink/stores/useIsXSubAccount';
 
@@ -24,14 +26,30 @@ const handleClick = () => {
   emit('changeIsFavorite', !isFavorite);
 };
 
-const character_bg_img = (key: string) => `background-image: url('img/${key}.webp');`;
+// 画面外のVTuberはアニメーションを止める。再開時だけdelayを計算し直して位相を合わせる
+const itemEl = ref<HTMLElement>();
+const isVisible = ref<boolean>(false);
+const animationDelay = ref<string>('0ms');
+watch(isVisible, (newIsVisible) => {
+  if (newIsVisible) animationDelay.value = currentAnimationDelay();
+});
+let unobserve: (() => void) | undefined;
+onMounted(() => {
+  if (itemEl.value) unobserve = observeIsVisible(itemEl.value, (newIsVisible) => (isVisible.value = newIsVisible));
+});
+onUnmounted(() => unobserve?.());
+
+const bgStyle = computed(() => ({
+  backgroundImage: `url('img/${v.key}.webp')`,
+  animationDelay: animationDelay.value,
+}));
 
 const { isXSubAccount } = storeToRefs(useIsXSubAccount());
 const xLink = (v: VTuberData) => (isXSubAccount.value && v.twitterSub ? (v.twitterSub ?? v.twitter) : v.twitter);
 </script>
 
 <template>
-  <div class="character-item" :class="[...(v.forceClearBoth ? ['cb'] : [])]" @click="handleClick">
+  <div ref="itemEl" class="character-item" :class="[...(v.forceClearBoth ? ['cb'] : [])]" @click="handleClick">
     <div
       :class="[
         'character-circle',
@@ -51,7 +69,7 @@ const xLink = (v: VTuberData) => (isXSubAccount.value && v.twitterSub ? (v.twitt
     </div>
     <div class="character-circle-white"></div>
     <div class="character-out"></div>
-    <div class="character-bg" :style="character_bg_img(v.key)"></div>
+    <div class="character-bg" :class="{ 'animation-paused': !isVisible }" :style="bgStyle"></div>
   </div>
 </template>
 
@@ -185,6 +203,11 @@ $border_out: 30px;
   animation: myrotate 0.8s;
   animation-iteration-count: infinite;
   z-index: 1;
+}
+
+/* 画面外ではアニメーションを止めて負荷を下げる(.character-bgより後ろに置いて上書きする) */
+.animation-paused {
+  animation: none;
 }
 
 @keyframes myrotate {
