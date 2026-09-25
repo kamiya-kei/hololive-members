@@ -17,6 +17,10 @@ import {
   TCompany,
   loadIsFavoriteVTuberHighlightConfig,
   updateIsFavoriteVTuberHighlightConfig,
+  hololiveGroups,
+  loadHololiveGroupsConfig,
+  updateHololiveGroupsConfig,
+  toVTuberGroups,
 } from './functions/vTubersConfigs';
 import { VTuberData, buildVTubers } from './functions/buildVTubers';
 import VTuberCircle from './VTuberCircle.vue';
@@ -37,6 +41,33 @@ watch(displayCompanies, (newDisplayCompanies) => {
   updateCompanyConfig(newDisplayCompanies);
 });
 
+const displayHololiveGroups = ref<string[]>(loadHololiveGroupsConfig());
+watch(displayHololiveGroups, (newDisplayHololiveGroups) => {
+  updateHololiveGroupsConfig(newDisplayHololiveGroups);
+});
+
+// ホロライブのチェックは期生・ユニットの一括ON/OFFを兼ねる
+const handleChangeCompany = (company: TCompany, isChecked: boolean) => {
+  const newDisplayCompanies = isChecked
+    ? [...displayCompanies.value, company]
+    : displayCompanies.value.filter((v) => v !== company);
+  displayCompanies.value = companies.filter((v) => newDisplayCompanies.includes(v));
+  if (company === 'hololive') displayHololiveGroups.value = isChecked ? [...hololiveGroups] : [];
+};
+
+// 期生・ユニットが全部チェックされているときだけホロライブにチェックを付ける
+const handleChangeHololiveGroup = (group: string, isChecked: boolean) => {
+  const newGroups = isChecked
+    ? [...displayHololiveGroups.value, group]
+    : displayHololiveGroups.value.filter((v) => v !== group);
+  displayHololiveGroups.value = hololiveGroups.filter((v) => newGroups.includes(v));
+  const isAllChecked = displayHololiveGroups.value.length === hololiveGroups.length;
+  if (isAllChecked === displayCompanies.value.includes('hololive')) return;
+  displayCompanies.value = isAllChecked
+    ? companies.filter((v) => [...displayCompanies.value, 'hololive'].includes(v))
+    : displayCompanies.value.filter((v) => v !== 'hololive');
+};
+
 const isFilterFavoriteVTubers = ref<boolean>(loadIsFilterFavoriteVTubersConfig());
 watch(isFilterFavoriteVTubers, (newIsFilterFavoriteVTubers) => {
   updateIsFilterFavoriteVTubersConfig(newIsFilterFavoriteVTubers);
@@ -56,9 +87,15 @@ const handleClickVTuber = (vTuber: VTuberData, newIsFavorite: boolean) => {
   updateFavoriteVTubersKeysConfig(newFavoriteVTuberKeys);
 };
 
+// ホロライブだけは期生・ユニット単位で絞り込む
+const isDisplayVTuber = (v: VTuberData): boolean =>
+  v.company === 'hololive'
+    ? toVTuberGroups(v.group).some((group) => displayHololiveGroups.value.includes(group))
+    : displayCompanies.value.includes(v.company);
+
 const filteredVTubers = computed<VTuberData[]>(() => {
   return vTubers.value.flatMap((v) => {
-    if (!displayCompanies.value.includes(v.company)) return [];
+    if (!isDisplayVTuber(v)) return [];
     if (!isFilterFavoriteVTubers.value) return v;
     return favoriteVTuberKeys.value.includes(v.key) ? { ...v, forceClearBoth: false } : [];
   });
@@ -66,7 +103,7 @@ const filteredVTubers = computed<VTuberData[]>(() => {
 
 // アニメーションがズレないようにVTuber一覧のkeyを変える
 const keyVersion = ref(0);
-watch([sortType, displayCompanies, isFilterFavoriteVTubers], () => {
+watch([sortType, displayCompanies, displayHololiveGroups, isFilterFavoriteVTubers], () => {
   keyVersion.value++;
 });
 </script>
@@ -85,8 +122,24 @@ watch([sortType, displayCompanies, isFilterFavoriteVTubers], () => {
     <p class="config">
       <template v-for="company in companies" :key="company">
         <label>
-          <input v-model="displayCompanies" type="checkbox" :value="company" />
+          <input
+            type="checkbox"
+            :checked="displayCompanies.includes(company)"
+            @change="handleChangeCompany(company, ($event.target as HTMLInputElement).checked)"
+          />
           {{ companyTexts[company] }}
+        </label>
+      </template>
+    </p>
+    <p class="config groupConfig">
+      <template v-for="group in hololiveGroups" :key="group">
+        <label>
+          <input
+            type="checkbox"
+            :checked="displayHololiveGroups.includes(group)"
+            @change="handleChangeHololiveGroup(group, ($event.target as HTMLInputElement).checked)"
+          />
+          {{ group }}
         </label>
       </template>
     </p>
@@ -130,6 +183,12 @@ watch([sortType, displayCompanies, isFilterFavoriteVTubers], () => {
 
 .config {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
+}
+
+/* ホロライブの期生・ユニットはホロライブのチェックの下位として字下げする */
+.groupConfig {
+  padding-left: 16px;
 }
 </style>

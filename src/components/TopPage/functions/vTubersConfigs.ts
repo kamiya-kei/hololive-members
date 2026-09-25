@@ -39,6 +39,31 @@ export const loadCompanyConfig = (): TCompany[] => {
 };
 export const updateCompanyConfig = (companies: readonly TCompany[]) => setToStorage(COMPANY_KEY, companies.join(','));
 
+// ホロライブの期生・ユニット
+// groupはカンマ区切りで複数所属を表す(白上フブキの「1期生,ゲーマーズ」)
+export const toVTuberGroups = (group: string): string[] => group.split(',');
+
+// 表示順(sort)が若いグループから並べる。メンバーを追加すれば新しい期生・ユニットも自動で増える
+export const hololiveGroups: string[] = (() => {
+  const minSorts = new Map<string, number>();
+  vTubers
+    .filter((v) => v.company === 'hololive')
+    .forEach((v) =>
+      toVTuberGroups(v.group).forEach((group) => minSorts.set(group, Math.min(minSorts.get(group) ?? v.sort, v.sort)))
+    );
+  return [...minSorts].sort(([, a], [, b]) => a - b).map(([group]) => group);
+})();
+
+const HOLOLIVE_GROUP_KEY = 'displayHololiveGroups';
+export const loadHololiveGroupsConfig = (): string[] => {
+  const config = getFromStorage(HOLOLIVE_GROUP_KEY)?.split(',');
+  // 未保存のときは既存のホロライブのチェック状態に合わせる
+  if (!config) return loadCompanyConfig().includes('hololive') ? [...hololiveGroups] : [];
+  return hololiveGroups.filter((v) => config.includes(v));
+};
+export const updateHololiveGroupsConfig = (groups: readonly string[]) =>
+  setToStorage(HOLOLIVE_GROUP_KEY, groups.join(','));
+
 // 推し一覧
 const FAVORITE_V_TUBER_KEYS_KEY = 'favoriteVTubersKeys';
 export const loadFavoriteVTubersKeysConfig = (): string[] => {
