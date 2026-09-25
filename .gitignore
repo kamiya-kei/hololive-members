@@ -1,6 +1,7 @@
 /cap/
 *.bat
 /tmp/
+/.playwright-mcp/
 
 # Logs
 logs
